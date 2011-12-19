@@ -1,0 +1,1366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: Bluevia::BaseClient</title>
+
+  <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="../lib/bluevia/base_client_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/bluevia/base_client.rb">lib/bluevia/base_client.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link">Object</p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-create_rest_client">::create_rest_client</a></li>
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-i-DELETE">#DELETE</a></li>
+          
+          <li><a href="#method-i-GET">#GET</a></li>
+          
+          <li><a href="#method-i-POST">#POST</a></li>
+          
+          <li><a href="#method-i-POST_MULTIPART">#POST_MULTIPART</a></li>
+          
+          <li><a href="#method-i-RPC">#RPC</a></li>
+          
+          <li><a href="#method-i-5B-5D-3D">#[]=</a></li>
+          
+          <li><a href="#method-i-authorized_client">#authorized_client</a></li>
+          
+          <li><a href="#method-i-get_basepath">#get_basepath</a></li>
+          
+          <li><a href="#method-i-get_getresponse">#get_getresponse</a></li>
+          
+          <li><a href="#method-i-get_headers">#get_headers</a></li>
+          
+          <li><a href="#method-i-include_params">#include_params</a></li>
+          
+          <li><a href="#method-i-is_two_legged">#is_two_legged</a></li>
+          
+          <li><a href="#method-i-set_http_client">#set_http_client</a></li>
+          
+          <li><a href="#method-i-set_path">#set_path</a></li>
+          
+          <li><a href="#method-i-set_timeout">#set_timeout</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><a class="include" href="../BlueviaLogger.html">BlueviaLogger</a></li>
+        
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="../Rakefile.html">Rakefile</a></li>
+        
+          <li class="file"><a href="../UserGuide.html">UserGuide</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../Schemas.html">Schemas</a></li>
+        
+          <li><a href="../Schemas/Common_types.html">Schemas::Common_types</a></li>
+        
+          <li><a href="../Schemas/Common_types/AddressType.html">Schemas::Common_types::AddressType</a></li>
+        
+          <li><a href="../Schemas/Common_types/ClientExceptionType.html">Schemas::Common_types::ClientExceptionType</a></li>
+        
+          <li><a href="../Schemas/Common_types/ExtensionType.html">Schemas::Common_types::ExtensionType</a></li>
+        
+          <li><a href="../Schemas/Common_types/FlagType.html">Schemas::Common_types::FlagType</a></li>
+        
+          <li><a href="../Schemas/Common_types/GenderType.html">Schemas::Common_types::GenderType</a></li>
+        
+          <li><a href="../Schemas/Common_types/IpAddressType.html">Schemas::Common_types::IpAddressType</a></li>
+        
+          <li><a href="../Schemas/Common_types/OtherIdType.html">Schemas::Common_types::OtherIdType</a></li>
+        
+          <li><a href="../Schemas/Common_types/ServerExceptionType.html">Schemas::Common_types::ServerExceptionType</a></li>
+        
+          <li><a href="../Schemas/Common_types/SimpleReferenceType.html">Schemas::Common_types::SimpleReferenceType</a></li>
+        
+          <li><a href="../Schemas/Common_types/UserIdType.html">Schemas::Common_types::UserIdType</a></li>
+        
+          <li><a href="../Schemas/Directory_types.html">Schemas::Directory_types</a></li>
+        
+          <li><a href="../Schemas/Directory_types/AddressType.html">Schemas::Directory_types::AddressType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/ClientExceptionType.html">Schemas::Directory_types::ClientExceptionType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/ExtensionType.html">Schemas::Directory_types::ExtensionType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/FlagType.html">Schemas::Directory_types::FlagType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/GenderType.html">Schemas::Directory_types::GenderType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/IpAddressType.html">Schemas::Directory_types::IpAddressType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/MmsStatusType.html">Schemas::Directory_types::MmsStatusType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/NameType.html">Schemas::Directory_types::NameType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/OtherIdType.html">Schemas::Directory_types::OtherIdType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/ServerExceptionType.html">Schemas::Directory_types::ServerExceptionType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/SimpleReferenceType.html">Schemas::Directory_types::SimpleReferenceType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/StatusType.html">Schemas::Directory_types::StatusType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/SubscribedServiceType.html">Schemas::Directory_types::SubscribedServiceType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/UserAccessInfoType.html">Schemas::Directory_types::UserAccessInfoType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/UserIdType.html">Schemas::Directory_types::UserIdType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/UserIdentitiesType.html">Schemas::Directory_types::UserIdentitiesType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/UserInfoType.html">Schemas::Directory_types::UserInfoType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/UserPersonalInfoType.html">Schemas::Directory_types::UserPersonalInfoType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/UserProfileType.html">Schemas::Directory_types::UserProfileType</a></li>
+        
+          <li><a href="../Schemas/Directory_types/UserTerminalInfoType.html">Schemas::Directory_types::UserTerminalInfoType</a></li>
+        
+          <li><a href="../Schemas/Location_types.html">Schemas::Location_types</a></li>
+        
+          <li><a href="../Schemas/Location_types/AddressType.html">Schemas::Location_types::AddressType</a></li>
+        
+          <li><a href="../Schemas/Location_types/ClientExceptionType.html">Schemas::Location_types::ClientExceptionType</a></li>
+        
+          <li><a href="../Schemas/Location_types/CoordinatesType.html">Schemas::Location_types::CoordinatesType</a></li>
+        
+          <li><a href="../Schemas/Location_types/ExtensionType.html">Schemas::Location_types::ExtensionType</a></li>
+        
+          <li><a href="../Schemas/Location_types/FlagType.html">Schemas::Location_types::FlagType</a></li>
+        
+          <li><a href="../Schemas/Location_types/GenderType.html">Schemas::Location_types::GenderType</a></li>
+        
+          <li><a href="../Schemas/Location_types/IpAddressType.html">Schemas::Location_types::IpAddressType</a></li>
+        
+          <li><a href="../Schemas/Location_types/LocationDataType.html">Schemas::Location_types::LocationDataType</a></li>
+        
+          <li><a href="../Schemas/Location_types/LocationInfoType.html">Schemas::Location_types::LocationInfoType</a></li>
+        
+          <li><a href="../Schemas/Location_types/OtherIdType.html">Schemas::Location_types::OtherIdType</a></li>
+        
+          <li><a href="../Schemas/Location_types/RetrievalStatusType.html">Schemas::Location_types::RetrievalStatusType</a></li>
+        
+          <li><a href="../Schemas/Location_types/ServerExceptionType.html">Schemas::Location_types::ServerExceptionType</a></li>
+        
+          <li><a href="../Schemas/Location_types/ServiceErrorType.html">Schemas::Location_types::ServiceErrorType</a></li>
+        
+          <li><a href="../Schemas/Location_types/SimpleReferenceType.html">Schemas::Location_types::SimpleReferenceType</a></li>
+        
+          <li><a href="../Schemas/Location_types/TerminalLocationListType.html">Schemas::Location_types::TerminalLocationListType</a></li>
+        
+          <li><a href="../Schemas/Location_types/UserIdType.html">Schemas::Location_types::UserIdType</a></li>
+        
+          <li><a href="../Schemas/Mms_types.html">Schemas::Mms_types</a></li>
+        
+          <li><a href="../Schemas/Mms_types/AddressType.html">Schemas::Mms_types::AddressType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/ClientExceptionType.html">Schemas::Mms_types::ClientExceptionType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/DeliveryInformationType.html">Schemas::Mms_types::DeliveryInformationType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/DeliveryReceiptNotificationType.html">Schemas::Mms_types::DeliveryReceiptNotificationType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/DeliveryStatusType.html">Schemas::Mms_types::DeliveryStatusType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/DeliveryStatusUpdateType.html">Schemas::Mms_types::DeliveryStatusUpdateType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/ExtensionType.html">Schemas::Mms_types::ExtensionType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/FlagType.html">Schemas::Mms_types::FlagType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/GenderType.html">Schemas::Mms_types::GenderType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/IpAddressType.html">Schemas::Mms_types::IpAddressType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/MessageDeliveryStatusType.html">Schemas::Mms_types::MessageDeliveryStatusType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/MessageNotificationType.html">Schemas::Mms_types::MessageNotificationType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/MessagePriorityType.html">Schemas::Mms_types::MessagePriorityType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/MessageReferenceType.html">Schemas::Mms_types::MessageReferenceType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/MessageType.html">Schemas::Mms_types::MessageType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/MessageURIType.html">Schemas::Mms_types::MessageURIType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/OtherIdType.html">Schemas::Mms_types::OtherIdType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/ReceivedMessageAsyncType.html">Schemas::Mms_types::ReceivedMessageAsyncType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/ReceivedMessagesType.html">Schemas::Mms_types::ReceivedMessagesType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/ServerExceptionType.html">Schemas::Mms_types::ServerExceptionType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/SimpleReferenceType.html">Schemas::Mms_types::SimpleReferenceType</a></li>
+        
+          <li><a href="../Schemas/Mms_types/UserIdType.html">Schemas::Mms_types::UserIdType</a></li>
+        
+          <li><a href="../Schemas/Payment_types.html">Schemas::Payment_types</a></li>
+        
+          <li><a href="../Schemas/Payment_types/ErrorType.html">Schemas::Payment_types::ErrorType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/GetPaymentStatusParamsType.html">Schemas::Payment_types::GetPaymentStatusParamsType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/GetPaymentStatusResultType.html">Schemas::Payment_types::GetPaymentStatusResultType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/IpAddressType.html">Schemas::Payment_types::IpAddressType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/MethodCallType.html">Schemas::Payment_types::MethodCallType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/MethodCallType_.html">Schemas::Payment_types::MethodCallType_</a></li>
+        
+          <li><a href="../Schemas/Payment_types/MethodCallType_/Params.html">Schemas::Payment_types::MethodCallType_::Params</a></li>
+        
+          <li><a href="../Schemas/Payment_types/MethodResponseType.html">Schemas::Payment_types::MethodResponseType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/MethodResponseType_.html">Schemas::Payment_types::MethodResponseType_</a></li>
+        
+          <li><a href="../Schemas/Payment_types/MethodResponseType_/Result.html">Schemas::Payment_types::MethodResponseType_::Result</a></li>
+        
+          <li><a href="../Schemas/Payment_types/MethodType.html">Schemas::Payment_types::MethodType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/NotifyPaymentFinalStatusParamsType.html">Schemas::Payment_types::NotifyPaymentFinalStatusParamsType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/OtherIdType.html">Schemas::Payment_types::OtherIdType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/PaymentInfoType.html">Schemas::Payment_types::PaymentInfoType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/PaymentParamsType.html">Schemas::Payment_types::PaymentParamsType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/PaymentResultType.html">Schemas::Payment_types::PaymentResultType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/SimpleReferenceType.html">Schemas::Payment_types::SimpleReferenceType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/TransactionEnumerationType.html">Schemas::Payment_types::TransactionEnumerationType</a></li>
+        
+          <li><a href="../Schemas/Payment_types/UserIdType.html">Schemas::Payment_types::UserIdType</a></li>
+        
+          <li><a href="../Schemas/Sms_types.html">Schemas::Sms_types</a></li>
+        
+          <li><a href="../Schemas/Sms_types/AddressType.html">Schemas::Sms_types::AddressType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/ClientExceptionType.html">Schemas::Sms_types::ClientExceptionType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/DeliveryInformationType.html">Schemas::Sms_types::DeliveryInformationType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/DeliveryStatusType.html">Schemas::Sms_types::DeliveryStatusType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/ExtensionType.html">Schemas::Sms_types::ExtensionType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/FlagType.html">Schemas::Sms_types::FlagType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/GenderType.html">Schemas::Sms_types::GenderType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/IpAddressType.html">Schemas::Sms_types::IpAddressType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/OtherIdType.html">Schemas::Sms_types::OtherIdType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/ReceivedSMSAsyncType.html">Schemas::Sms_types::ReceivedSMSAsyncType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/ReceivedSMSType.html">Schemas::Sms_types::ReceivedSMSType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/SMSDeliveryStatusType.html">Schemas::Sms_types::SMSDeliveryStatusType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/SMSDeliveryStatusUpdateType.html">Schemas::Sms_types::SMSDeliveryStatusUpdateType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/SMSMessageType.html">Schemas::Sms_types::SMSMessageType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/SMSNotificationType.html">Schemas::Sms_types::SMSNotificationType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/SMSTextType.html">Schemas::Sms_types::SMSTextType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/ServerExceptionType.html">Schemas::Sms_types::ServerExceptionType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/SimpleReferenceType.html">Schemas::Sms_types::SimpleReferenceType</a></li>
+        
+          <li><a href="../Schemas/Sms_types/UserIdType.html">Schemas::Sms_types::UserIdType</a></li>
+        
+          <li><a href="../Bluevia.html">Bluevia</a></li>
+        
+          <li><a href="../Bluevia/AdResponse.html">Bluevia::AdResponse</a></li>
+        
+          <li><a href="../Bluevia/Advertising.html">Bluevia::Advertising</a></li>
+        
+          <li><a href="../Bluevia/Attach.html">Bluevia::Attach</a></li>
+        
+          <li><a href="../Bluevia/Attach/Attachment.html">Bluevia::Attach::Attachment</a></li>
+        
+          <li><a href="../Bluevia/BaseClient.html">Bluevia::BaseClient</a></li>
+        
+          <li><a href="../Bluevia/BlueviaClient.html">Bluevia::BlueviaClient</a></li>
+        
+          <li><a href="../Bluevia/ClientError.html">Bluevia::ClientError</a></li>
+        
+          <li><a href="../Bluevia/Directory.html">Bluevia::Directory</a></li>
+        
+          <li><a href="../Bluevia/Errors.html">Bluevia::Errors</a></li>
+        
+          <li><a href="../Bluevia/Location.html">Bluevia::Location</a></li>
+        
+          <li><a href="../Bluevia/Messaging.html">Bluevia::Messaging</a></li>
+        
+          <li><a href="../Bluevia/Mms.html">Bluevia::Mms</a></li>
+        
+          <li><a href="../Bluevia/NotFoundError.html">Bluevia::NotFoundError</a></li>
+        
+          <li><a href="../Bluevia/Oauth.html">Bluevia::Oauth</a></li>
+        
+          <li><a href="../Bluevia/OauthPayment.html">Bluevia::OauthPayment</a></li>
+        
+          <li><a href="../Bluevia/Payment.html">Bluevia::Payment</a></li>
+        
+          <li><a href="../Bluevia/Response.html">Bluevia::Response</a></li>
+        
+          <li><a href="../Bluevia/Schemas.html">Bluevia::Schemas</a></li>
+        
+          <li><a href="../Bluevia/ServerError.html">Bluevia::ServerError</a></li>
+        
+          <li><a href="../Bluevia/ServicesFactory.html">Bluevia::ServicesFactory</a></li>
+        
+          <li><a href="../Bluevia/Sms.html">Bluevia::Sms</a></li>
+        
+          <li><a href="../Bluevia/Utils.html">Bluevia::Utils</a></li>
+        
+          <li><a href="../Bluevia/Utils/Multipart.html">Bluevia::Utils::Multipart</a></li>
+        
+          <li><a href="../OAuth.html">OAuth</a></li>
+        
+          <li><a href="../OAuth/Client.html">OAuth::Client</a></li>
+        
+          <li><a href="../OAuth/Client/Helper.html">OAuth::Client::Helper</a></li>
+        
+          <li><a href="../Rack.html">Rack</a></li>
+        
+          <li><a href="../Rack/Multipart.html">Rack::Multipart</a></li>
+        
+          <li><a href="../Rack/Multipart/Parser.html">Rack::Multipart::Parser</a></li>
+        
+          <li><a href="../BlueviaLogger.html">BlueviaLogger</a></li>
+        
+          <li><a href="../Hash.html">Hash</a></li>
+        
+          <li><a href="../Multipartable.html">Multipartable</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">Bluevia::BaseClient</h1>
+
+    <div id="description" class="description">
+      
+<p>Abstract class that wraps access to REST services</p>
+
+    </div><!-- description -->
+
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+      <!-- Constants -->
+      <div id="constants-list" class="section">
+        <h3 class="section-header">Constants</h3>
+        <dl>
+        
+          <dt><a name="BASEPATH">BASEPATH</a></dt>
+          
+          <dd class="description"><p>Base Path to invoke <a href="../Bluevia.html">Bluevia</a> API. Production
+environment</p></dd>
+          
+        
+          <dt><a name="BASEPATH_COMMERCIAL">BASEPATH_COMMERCIAL</a></dt>
+          
+          <dd class="description"><p>Endpoint for commercial (either testing or commercial apps)</p></dd>
+          
+        
+          <dt><a name="BASEPATH_SANDBOX">BASEPATH_SANDBOX</a></dt>
+          
+          <dd class="description"><p>Endpoint for sandbox (either testing or commercial apps)</p></dd>
+          
+        
+          <dt><a name="BASEURI">BASEURI</a></dt>
+          
+          <dd class="description"><p>Base URI to invoke <a href="../Bluevia.html">Bluevia</a> API. Production
+environment</p></dd>
+          
+        
+          <dt><a name="DEFAULT_PARAMS">DEFAULT_PARAMS</a></dt>
+          
+          <dd class="description"><p>Default parameters required to invoke API</p></dd>
+          
+        
+          <dt><a name="PROXY">PROXY</a></dt>
+          
+          <dd class="description"><p>HTTP Proxy is SDK is being used behind a firewall</p></dd>
+          
+        
+          <dt><a name="RPCVERSIONPARM">RPCVERSIONPARM</a></dt>
+          
+          <dd class="description"><p><a href="BaseClient.html#method-i-RPC">RPC</a> call version</p></dd>
+          
+        
+        </dl>
+      </div>
+      
+
+      
+      <!-- Attributes -->
+      <div id="attribute-method-details" class="method-section section">
+        <h3 class="section-header">Attributes</h3>
+
+        
+        <div id="base_uri-attribute-method" class="method-detail">
+          <a name="base_uri"></a>
+          
+          <a name="base_uri="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">base_uri</span><span
+              class="attribute-access-type">[RW]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+      </div><!-- attribute-method-details -->
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="create_rest_client-method" class="method-detail ">
+          <a name="method-c-create_rest_client"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">create_rest_client</span><span
+              class="method-args">(uri = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="create_rest_client-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">BaseClient</span>.<span class="ruby-identifier">create_rest_client</span>(<span class="ruby-identifier">uri</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">@@base_uri</span> = <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-constant">BASEURI</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">uri</span>
+  <span class="ruby-identifier">@@uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">@@base_uri</span>)
+
+  <span class="ruby-comment"># Set proxy if required</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-constant">PROXY</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">proxy</span> = <span class="ruby-constant">PROXY</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;:&quot;</span>)
+    <span class="ruby-identifier">rest</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Proxy</span>(<span class="ruby-identifier">proxy</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">proxy</span>[<span class="ruby-value">1</span>]).<span class="ruby-identifier">new</span>(<span class="ruby-identifier">@@uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">@@uri</span>.<span class="ruby-identifier">port</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">rest</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">@@uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">@@uri</span>.<span class="ruby-identifier">port</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># Set HTTP connection with SSL if required</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">@@uri</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPS</span>)
+    <span class="ruby-identifier">rest</span>.<span class="ruby-identifier">use_ssl</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">rest</span>.<span class="ruby-identifier">read_timeout</span>=(<span class="ruby-value">5</span>)
+  <span class="ruby-identifier">rest</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- create_rest_client-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- create_rest_client-method -->
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(params = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Creates basic HTTP client</p>
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">@@uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-constant">BASEURI</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@rest</span> = <span class="ruby-constant">BaseClient</span>.<span class="ruby-identifier">create_rest_client</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Hash</span>)
+    <span class="ruby-identifier">params</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:rest</span>) <span class="ruby-keyword">and</span> <span class="ruby-ivar">@rest</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:rest</span>]
+    <span class="ruby-identifier">params</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:logger</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">logger</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:logger</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@rest</span> = <span class="ruby-identifier">params</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Initialized baseClient for service: #{self.class.name}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="DELETE-method" class="method-detail ">
+          <a name="method-i-DELETE"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">DELETE</span><span
+              class="method-args">(_path = nil, headers = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Send an Http::Delete to the server</p>
+            
+
+            
+            <div class="method-source-code" id="DELETE-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 285</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">DELETE</span>(<span class="ruby-identifier">_path</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword">nil</span>)
+    <span class="ruby-identifier">path</span> = <span class="ruby-identifier">set_path</span>(<span class="ruby-identifier">_path</span>)
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">include_params</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant">DEFAULT_PARAMS</span>)
+
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;DELETE Request path: &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path</span>
+
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">authorized_client</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">get_headers</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-keyword">false</span>))
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">handle_response</span>(<span class="ruby-identifier">create_response</span>(<span class="ruby-identifier">resp</span>))
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- DELETE-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- DELETE-method -->
+
+      
+        <div id="GET-method" class="method-detail ">
+          <a name="method-i-GET"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">GET</span><span
+              class="method-args">(_path = nil, params = nil, headers = nil, field = nil, use_base_path = true)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Send an Http::Get to the server</p>
+            
+
+            
+            <div class="method-source-code" id="GET-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">GET</span>(<span class="ruby-identifier">_path</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">params</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">field</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">use_base_path</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-ivar">@getresponse</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">use_base_path</span>        
+    <span class="ruby-identifier">path</span> = <span class="ruby-identifier">set_path</span>(<span class="ruby-identifier">_path</span>)                
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">path</span> = <span class="ruby-identifier">_path</span>
+  <span class="ruby-keyword">end</span>     
+  <span class="ruby-identifier">params</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-constant">DEFAULT_PARAMS</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">oldval</span>,<span class="ruby-identifier">newval</span><span class="ruby-operator">|</span> <span class="ruby-identifier">oldval</span> }
+
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">include_params</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">params</span>)
+
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;GET Request path: &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">authorized_client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">get_headers</span>(<span class="ruby-identifier">headers</span>))
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@getresponse</span> = <span class="ruby-identifier">create_response</span>(<span class="ruby-identifier">resp</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">handle_response</span>(<span class="ruby-ivar">@getresponse</span>, <span class="ruby-string">&quot;body&quot;</span>, <span class="ruby-identifier">field</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- GET-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- GET-method -->
+
+      
+        <div id="POST-method" class="method-detail ">
+          <a name="method-i-POST"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">POST</span><span
+              class="method-args">(_path = nil, body = nil, headers = nil, files = nil, return_header = nil, use_base_path = true, incl_params = true)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Send an Http::Post to the server</p>
+            
+
+            
+            <div class="method-source-code" id="POST-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">POST</span>(<span class="ruby-identifier">_path</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">body</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">files</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">return_header</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">use_base_path</span> = <span class="ruby-keyword">true</span>, <span class="ruby-identifier">incl_params</span> = <span class="ruby-keyword">true</span>)      
+    <span class="ruby-comment">#by default adds a basepath</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">use_base_path</span>
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">set_path</span>(<span class="ruby-identifier">_path</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">_path</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#by defaults adds version=1 params</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">incl_params</span>
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">include_params</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant">DEFAULT_PARAMS</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;POST Request path: &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path</span>
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;POST body: &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">body</span>
+
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">authorized_client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span>, <span class="ruby-identifier">get_headers</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-keyword">true</span>)) 
+    <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">handle_response</span>(<span class="ruby-identifier">create_response</span>(<span class="ruby-identifier">resp</span>), <span class="ruby-identifier">return_header</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;headers&quot;</span>, <span class="ruby-identifier">return_header</span>)
+  <span class="ruby-keyword">end</span></pre>
+            </div><!-- POST-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- POST-method -->
+
+      
+        <div id="POST_MULTIPART-method" class="method-detail ">
+          <a name="method-i-POST_MULTIPART"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">POST_MULTIPART</span><span
+              class="method-args">(_path = nil, message = nil, body = nil, attachments = nil, headers = nil, return_header = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Send an Http::Post::Multipart to the server</p>
+            
+
+            
+            <div class="method-source-code" id="POST_MULTIPART-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 215</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-constant">POST_MULTIPART</span>(<span class="ruby-identifier">_path</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">message</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">body</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">attachments</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">return_header</span> = <span class="ruby-keyword">nil</span>)
+
+      <span class="ruby-identifier">multipart_data</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+
+      <span class="ruby-comment">#process json root info (address, subject, ...)</span>
+      <span class="ruby-identifier">multipart_data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Part</span>.<span class="ruby-identifier">new</span>(
+        <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'root-fields'</span>,
+        <span class="ruby-value">:body</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">message</span>,
+        <span class="ruby-value">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'application/json'</span>
+      )
+
+      <span class="ruby-comment">#process message body</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">multipart_data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Part</span>.<span class="ruby-identifier">new</span>(
+          <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'body'</span>,
+          <span class="ruby-value">:body</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">body</span>,
+          <span class="ruby-value">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'text/plain'</span>
+        )
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">attachments</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Attach</span><span class="ruby-operator">::</span><span class="ruby-constant">Attachment</span>)
+        <span class="ruby-identifier">attachments</span> = [<span class="ruby-identifier">attachments</span>]
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#process attachments</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">attachments</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+        <span class="ruby-identifier">file_id</span> = <span class="ruby-value">0</span>
+        <span class="ruby-identifier">attachments</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">att</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">att</span>.<span class="ruby-identifier">filename</span>)
+<span class="ruby-comment">#              mime_type     = Utils.get_file_mime_type(file)</span>
+<span class="ruby-comment">#              attachment = File.open(file)</span>
+              <span class="ruby-identifier">mime_type</span> = <span class="ruby-identifier">att</span>.<span class="ruby-identifier">mimetype</span>
+<span class="ruby-comment">#              mime_type = mime_type + &quot;;charset=UTF-8\nContent-Transfer-Encoding: base64&quot;</span>
+              <span class="ruby-identifier">mime_type</span> = <span class="ruby-identifier">mime_type</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;;charset=UTF-8\nContent-Transfer-Encoding: binary&quot;</span>
+              <span class="ruby-identifier">attachment</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">att</span>.<span class="ruby-identifier">filename</span>, <span class="ruby-string">&quot;rb&quot;</span>)
+<span class="ruby-comment">#              contents = Base64.encode64(attachment.read)</span>
+              <span class="ruby-identifier">contents</span> = <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">read</span>
+              <span class="ruby-identifier">multipart_data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Part</span>.<span class="ruby-identifier">new</span>(
+                <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">file_id</span>,
+                <span class="ruby-value">:body</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">contents</span>,
+                <span class="ruby-value">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">att</span>.<span class="ruby-identifier">filename</span>,
+                <span class="ruby-value">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mime_type</span>
+              )
+              <span class="ruby-identifier">file_id</span> = <span class="ruby-identifier">file_id</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword">end</span>
+        }
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">multipart</span> = <span class="ruby-constant">MultipartBody</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">multipart_data</span>
+
+      <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;sent message: &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">multipart</span>.<span class="ruby-identifier">to_s</span>
+
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">set_path</span>(<span class="ruby-identifier">_path</span>)
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">include_params</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant">DEFAULT_PARAMS</span>)
+      <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;POST Request path: &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path</span>
+      
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;POST body: &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">body</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">authorized_client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">multipart</span>.<span class="ruby-identifier">to_s</span>,
+        {
+          <span class="ruby-string">&quot;Content-Type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;multipart/form-data; boundary=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">multipart</span>.<span class="ruby-identifier">boundary</span>
+        }
+      )
+      <span class="ruby-keyword">return</span>  <span class="ruby-identifier">handle_response</span>(<span class="ruby-identifier">create_response</span>(<span class="ruby-identifier">resp</span>), <span class="ruby-keyword">nil</span>)
+    <span class="ruby-keyword">end</span></pre>
+            </div><!-- POST_MULTIPART-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- POST_MULTIPART-method -->
+
+      
+        <div id="5B-5D-3D-method" class="method-detail ">
+          <a name="method-i-5B-5D-3D"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">[]=</span><span
+              class="method-args">(key, value)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Define an instance variable using the default <a
+href="../Hash.html">Hash</a> syntax</p>
+            
+
+            
+            <div class="method-source-code" id="5B-5D-3D-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:&quot;@#{key}&quot;</span>, <span class="ruby-identifier">value</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- 5B-5D-3D-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- 5B-5D-3D-method -->
+
+      
+        <div id="authorized_client-method" class="method-detail ">
+          <a name="method-i-authorized_client"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">authorized_client</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Generates an authorized oAuth Client</p>
+            
+
+            
+            <div class="method-source-code" id="authorized_client-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 297</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">authorized_client</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@timestamp</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@consumer</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@consumer_key</span>, <span class="ruby-ivar">@consumer_secret</span>, <span class="ruby-value">:site</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@base_uri</span>)
+  <span class="ruby-keyword">else</span> 
+    <span class="ruby-ivar">@consumer</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@consumer_key</span>, <span class="ruby-ivar">@consumer_secret</span>, <span class="ruby-value">:site</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@base_uri</span>, <span class="ruby-value">:timestamp=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@timestamp</span>.<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">to_s</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@access_token</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessToken</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@consumer</span>, <span class="ruby-ivar">@token</span>, <span class="ruby-ivar">@token_secret</span>)
+  <span class="ruby-ivar">@access_token</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- authorized_client-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- authorized_client-method -->
+
+      
+        <div id="get_basepath-method" class="method-detail ">
+          <a name="method-i-get_basepath"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_basepath</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Each <a href="../Bluevia.html">Bluevia</a> API has a specific basepath.
+This method gets the specific service basepath and the path associated to
+the request (either test or commercial)</p>
+            
+
+            
+            <div class="method-source-code" id="get_basepath-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 141</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_basepath</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">basepath</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-string">&quot;BASEPATH_API&quot;</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NameError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Unable to fetch basepath #{e}&quot;</span>
+    <span class="ruby-identifier">basepath</span> = <span class="ruby-node">&quot;/#{self.class.to_s.upcase}_&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@commercial</span>
+    <span class="ruby-identifier">path</span> = <span class="ruby-constant">BASEPATH_COMMERCIAL</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">path</span> = <span class="ruby-constant">BASEPATH_SANDBOX</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-node">&quot;#{basepath}#{path}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_basepath-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_basepath-method -->
+
+      
+        <div id="get_getresponse-method" class="method-detail ">
+          <a name="method-i-get_getresponse"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_getresponse</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="get_getresponse-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_getresponse</span>()
+  <span class="ruby-ivar">@getresponse</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_getresponse-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_getresponse-method -->
+
+      
+        <div id="get_headers-method" class="method-detail ">
+          <a name="method-i-get_headers"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_headers</span><span
+              class="method-args">(_headers = nil, is_post = false)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Creates the basic header while creating an HTTP Request</p>
+            
+
+            
+            <div class="method-source-code" id="get_headers-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 320</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_headers</span>(<span class="ruby-identifier">_headers</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">is_post</span> = <span class="ruby-keyword">false</span>)
+
+  <span class="ruby-identifier">headers</span> = {
+    <span class="ruby-string">&quot;Accept&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;application/json&quot;</span>
+    }
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_post</span>
+    <span class="ruby-identifier">headers</span>[<span class="ruby-string">&quot;Content-Type&quot;</span>] = <span class="ruby-string">&quot;application/json&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">_headers</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">_headers</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">oldval</span>,<span class="ruby-identifier">newval</span><span class="ruby-operator">|</span> <span class="ruby-identifier">newval</span> }
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;HEADERS: &quot;</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-identifier">headers</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">headers</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_headers-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_headers-method -->
+
+      
+        <div id="include_params-method" class="method-detail ">
+          <a name="method-i-include_params"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">include_params</span><span
+              class="method-args">(_path, _params)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Include params in the URI being created to perform a REST call</p>
+            
+
+            
+            <div class="method-source-code" id="include_params-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">include_params</span>(<span class="ruby-identifier">_path</span>, <span class="ruby-identifier">_params</span>)
+  <span class="ruby-node">&quot;#{_path}?&quot;</span>.
+    <span class="ruby-identifier">concat</span>(
+    <span class="ruby-identifier">_params</span>.<span class="ruby-identifier">collect</span>{
+      <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-node">&quot;#{k}=#{CGI::escape(v.to_s)}&quot;</span>
+    }.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">'&amp;'</span>)) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">_params</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- include_params-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- include_params-method -->
+
+      
+        <div id="is_two_legged-method" class="method-detail ">
+          <a name="method-i-is_two_legged"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">is_two_legged</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns true if is two legged</p>
+            
+
+            
+            <div class="method-source-code" id="is_two_legged-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 310</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_two_legged</span>      
+  <span class="ruby-identifier">two_legs</span> = <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@token_secret</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;Application is two legged? &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">two_legs</span>.<span class="ruby-identifier">inspect</span>
+  
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">two_legs</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- is_two_legged-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- is_two_legged-method -->
+
+      
+        <div id="set_http_client-method" class="method-detail ">
+          <a name="method-i-set_http_client"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">set_http_client</span><span
+              class="method-args">(rest)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>set HTTP client</p>
+            
+
+            
+            <div class="method-source-code" id="set_http_client-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_http_client</span>(<span class="ruby-identifier">rest</span>)
+  <span class="ruby-ivar">@rest</span> = <span class="ruby-identifier">rest</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- set_http_client-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- set_http_client-method -->
+
+      
+        <div id="set_path-method" class="method-detail ">
+          <a name="method-i-set_path"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">set_path</span><span
+              class="method-args">(_path = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Creates a valid path by concat the path received with the path defined in
+<a href="BaseClient.html#BASEPATH">BASEPATH</a></p>
+            
+
+            
+            <div class="method-source-code" id="set_path-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_path</span>(<span class="ruby-identifier">_path</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">path</span> = <span class="ruby-constant">BASEPATH</span>.<span class="ruby-identifier">clone</span>
+  <span class="ruby-identifier">path</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">_path</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- set_path-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- set_path-method -->
+
+      
+        <div id="set_timeout-method" class="method-detail ">
+          <a name="method-i-set_timeout"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">set_timeout</span><span
+              class="method-args">(timeout = 5)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>set the valid timeout for the HTTP requests</p>
+            
+
+            
+            <div class="method-source-code" id="set_timeout-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_timeout</span>(<span class="ruby-identifier">timeout</span> = <span class="ruby-value">5</span>)
+  <span class="ruby-operator">!</span><span class="ruby-identifier">timeout</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@rest</span>.<span class="ruby-identifier">read_timeout</span>(<span class="ruby-identifier">timeout</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- set_timeout-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- set_timeout-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+      <div id="protected-instance-method-details" class="method-section section">
+        <h3 class="section-header">Protected Instance Methods</h3>
+
+      
+        <div id="RPC-method" class="method-detail ">
+          <a name="method-i-RPC"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">RPC</span><span
+              class="method-args">(url, method, request_params = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="RPC-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/base_client.rb, line 505</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-constant">RPC</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">request_params</span> = <span class="ruby-keyword">nil</span>)
+
+    <span class="ruby-identifier">headers</span> = {
+      <span class="ruby-string">&quot;Accept&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;application/xml&quot;</span>,
+      <span class="ruby-string">&quot;Content-Type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;application/xml&quot;</span>
+    }
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">request_params</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">parsed_params</span> = <span class="ruby-constant">XmlSimple</span>.<span class="ruby-identifier">xml_out</span>(<span class="ruby-identifier">request_params</span>, {<span class="ruby-string">'NoAttr'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-string">'KeepRoot'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-string">'NoIndent'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span> })
+      <span class="ruby-identifier">block</span> = <span class="ruby-string">'&lt;tns:params&gt;'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">parsed_params</span> <span class="ruby-operator">+</span> <span class="ruby-string">'&lt;/tns:params&gt;'</span>
+      <span class="ruby-identifier">parsed_params</span> = <span class="ruby-identifier">block</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">parsed_params</span> = <span class="ruby-string">''</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">id</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">uuid</span>
+    <span class="ruby-comment"># it needs basic namespace definitions</span>
+    
+     <span class="ruby-identifier">str_call</span> =
+         <span class="ruby-string">'&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;'</span> <span class="ruby-operator">+</span>
+         <span class="ruby-string">'&lt;tns:methodCall'</span><span class="ruby-operator">+</span>
+         <span class="ruby-string">' xmlns:tns=&quot;http://www.telefonica.com/schemas/UNICA/RPC/payment/v1&quot;'</span><span class="ruby-operator">+</span>
+         <span class="ruby-string">' xmlns:uctr=&quot;http://www.telefonica.com/schemas/UNICA/RPC/common/v1&quot;'</span><span class="ruby-operator">+</span>
+         <span class="ruby-string">' xmlns:rpc=&quot;http://www.telefonica.com/schemas/UNICA/RPC/definition/v1&quot;'</span><span class="ruby-operator">+</span>
+         <span class="ruby-string">' xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;'</span><span class="ruby-operator">+</span>
+         <span class="ruby-string">' xsi:schemaLocation=&quot;http://www.telefonica.com/schemas/UNICA/RPC/payment/v1'</span><span class="ruby-operator">+</span>
+         <span class="ruby-string">' UNICA_API_RPC_payment_types_v1_1.xsd&quot;&gt;'</span> <span class="ruby-operator">+</span> 
+         <span class="ruby-string">'&lt;rpc:id&gt;'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">+</span> <span class="ruby-string">'&lt;/rpc:id&gt;'</span> <span class="ruby-operator">+</span> 
+         <span class="ruby-string">'&lt;rpc:version&gt;'</span> <span class="ruby-operator">+</span> <span class="ruby-constant">RPCVERSIONPARM</span> <span class="ruby-operator">+</span> <span class="ruby-string">'&lt;/rpc:version&gt;'</span> <span class="ruby-operator">+</span>
+         <span class="ruby-string">'&lt;tns:method&gt;'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">+</span> <span class="ruby-string">'&lt;/tns:method&gt;'</span> <span class="ruby-operator">+</span>
+           <span class="ruby-identifier">parsed_params</span> <span class="ruby-operator">+</span>
+        <span class="ruby-string">'&lt;/tns:methodCall&gt;'</span>
+        
+    <span class="ruby-comment">#POST( @@base_uri + '/services/RPC' + url, str_call.chomp, headers, nil, nil, false, false )</span>
+    <span class="ruby-comment">#def POST(_path = nil, body = nil, headers = nil, files = nil, return_header = nil, use_base_path = true, incl_params = true)      </span>
+    <span class="ruby-comment">#by default adds a basepath</span>
+    <span class="ruby-comment">#if use_base_path</span>
+    <span class="ruby-comment">#    path = set_path(_path)</span>
+    <span class="ruby-comment">#  else</span>
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">@@base_uri</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/services/RPC'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">url</span>
+      <span class="ruby-identifier">body</span>= <span class="ruby-identifier">str_call</span>.<span class="ruby-identifier">chomp</span>
+      <span class="ruby-identifier">return_header</span>=<span class="ruby-keyword">nil</span>
+    <span class="ruby-comment">#  end</span>
+      <span class="ruby-comment">#by defaults adds version=1 params</span>
+    <span class="ruby-comment">#  if incl_params</span>
+    <span class="ruby-comment">#    path = include_params(path, DEFAULT_PARAMS)</span>
+    <span class="ruby-comment">#  end</span>
+      <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;POST Request path: &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path</span>
+      <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;POST body: &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">body</span>
+
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">authorized_client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span>, <span class="ruby-identifier">get_headers</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-keyword">true</span>)) 
+      <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">return</span> <span class="ruby-identifier">handle_response_RPC</span>(<span class="ruby-identifier">create_response</span>(<span class="ruby-identifier">resp</span>), <span class="ruby-identifier">return_header</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;headers&quot;</span>, <span class="ruby-identifier">return_header</span>)
+ 
+  <span class="ruby-keyword">end</span></pre>
+            </div><!-- RPC-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- RPC-method -->
+
+      
+      </div><!-- protected-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+
