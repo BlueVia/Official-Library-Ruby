@@ -1,0 +1,184 @@
+--- !ruby/object:Gem::Specification 
+name: bluevia
+version: !ruby/object:Gem::Version 
+  prerelease: 
+  version: "1.0"
+platform: ruby
+authors: 
+- Bluevia
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-01-28 00:00:00 Z
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: httpclient
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 2.1.5.2
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: oauth
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.4.1
+  type: :runtime
+  version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: json_pure
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.4.3
+  type: :runtime
+  version_requirements: *id003
+- !ruby/object:Gem::Dependency 
+  name: nokogiri
+  prerelease: false
+  requirement: &id004 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.4.2
+  type: :runtime
+  version_requirements: *id004
+- !ruby/object:Gem::Dependency 
+  name: multipart-post
+  prerelease: false
+  requirement: &id005 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.0.1
+  type: :runtime
+  version_requirements: *id005
+- !ruby/object:Gem::Dependency 
+  name: multipart_body
+  prerelease: false
+  requirement: &id006 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.2.0
+  type: :runtime
+  version_requirements: *id006
+- !ruby/object:Gem::Dependency 
+  name: mime-types
+  prerelease: false
+  requirement: &id007 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: "1.16"
+  type: :runtime
+  version_requirements: *id007
+- !ruby/object:Gem::Dependency 
+  name: xml-simple
+  prerelease: false
+  requirement: &id008 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.1.0
+  type: :runtime
+  version_requirements: *id008
+- !ruby/object:Gem::Dependency 
+  name: rack
+  prerelease: false
+  requirement: &id009 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.3.0
+  type: :runtime
+  version_requirements: *id009
+description: Ruby SDK for BlueVia allows you to use the BueVia public API                      from your Ruby application using just few lines of code.
+email: support@bluevia.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- UserGuide
+- LICENSE.LGPLv3
+files: 
+- lib/bluevia/mms.rb
+- lib/bluevia/bluevia_client.rb
+- lib/bluevia/errors.rb
+- lib/bluevia/response.rb
+- lib/bluevia/payment.rb
+- lib/bluevia/schemas.rb
+- lib/bluevia/sms.rb
+- lib/bluevia/messaging.rb
+- lib/bluevia/base_client.rb
+- lib/bluevia/advertising.rb
+- lib/bluevia/ext/hash.rb
+- lib/bluevia/errors/not_found_error.rb
+- lib/bluevia/errors/server_error.rb
+- lib/bluevia/errors/client_error.rb
+- lib/bluevia/location.rb
+- lib/bluevia/oauth_payment.rb
+- lib/bluevia/attach.rb
+- lib/bluevia/bluevia_logger.rb
+- lib/bluevia/schemas/common_types.rb
+- lib/bluevia/schemas/sms_types.rb
+- lib/bluevia/schemas/payment_types.rb
+- lib/bluevia/schemas/mms_types.rb
+- lib/bluevia/schemas/location_types.rb
+- lib/bluevia/schemas/directory_types.rb
+- lib/bluevia/oauth.rb
+- lib/bluevia/utils.rb
+- lib/bluevia/directory.rb
+- lib/bluevia/ad_response.rb
+- lib/multipartable.rb
+- lib/bluevia.rb
+- UserGuide
+- LICENSE.LGPLv3
+homepage: http://github.com/bluevia
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.8.5
+signing_key: 
+specification_version: 3
+summary: This GEM provides an easy way to access Bluevia Public API
+test_files: []
+
