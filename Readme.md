@@ -1,8 +1,361 @@
-## We are currently restructuring the BlueVia github repositories
+## Introduction ##
 
-The official library for ruby will be available here soon.
+Bluevia Ruby SDK allows you to use the BueVia public API from your Ruby
+application using just a few lines of code.
+You only need to download the SDK, include it into your LOAD_PATH directory
+and leave magic work for you. If you download the gem this should be
+automatically included in your gem local repository.
 
-For the time being please get it from [https://bluevia.com/en/knowledge/sdks.Ruby](https://bluevia.com/en/knowledge/sdks.Ruby)
+When you want to use as developer Bluevia public APIs,
+first of all you need to get a commercial or testing API Key.
 
-Please be a little bit patient with us - thanks!
+Ruby SDK wraps any request to BlueVia endpoint by using a generic object
+BlueviaClient. This object uses the Component Pattern to fetch any service
+required by the developer (oAuth, SMS or Directory).
 
+## Getting Started ##
+
+Find below the gem dependencies required by Bluevia SDK:
+
+ - httpclient: used to create HTTP requests
+ - oauth: generic gem to launch the oAuth process
+ - nokogiri: used to parse XML responses (Advertising)
+ - json_pure: used to parse JSON responses
+ - multipart-post : used to send multipart MMS
+ - multipart_body : used to prepare multipart bodys for MMS
+ - mime-types : used to encode mime data
+ - rack : used to parse multipart MMS
+
+This snippet shows the easier way to create a new object with valid credentials
+that identify the application:
+
+    require 'rubygems'
+    require 'bluevia'
+    include Bluevia
+
+    @bc = BlueviaClient.new(
+       { :consumer_key   => CONSUMER_KEY,
+         :consumer_secret=> CONSUMER_SECRET,
+         :uri            => 'https://api.bluevia.com'
+       })
+
+## Endpoints ##
+
+BlueVia has two endpoints, commercial and sandbox.
+Commercial is linked to Telefonica network, and sandbox is used just to
+verify application behavior.
+The developer can change the endpoint just setting the desired behavior
+in the client:
+
+   @bc.set_commercial
+   @bc.set_sandbox
+
+Use the method `@bc.commercial?` to verify if the client is accessing either
+commercial or sandbox endpoint.
+
+## Using Oauth ##
+
+User authentication is launched using oAuth protocol, so user is not
+required to use credentials in third party applications.
+If you want to learn more about oAuth please check this URL: http://oauth.net.
+
+When user wants to launch the oAuth process, once the Bluevia client object
+has been created only the two lines below are required to retrieve 
+a valid token for user:
+
+    @service = @bc.get_service(:oAuth)
+    token, secret, url = @service.get_request_token({:callback =>'http://foo.bar'})
+
+Note that :callback is an optional parameter. 
+If it's defined you will receive the oauth_verifier as a request parameter at your 
+callback_url. 
+If it's not defined you will have to ask the user to enter the PIN code (oauth_verifier) 
+in your application.
+Finally in case :callback parameter is provided, it can also be a string with an msisdn 
+as follows:
+
+    token, secret, url = @service.get_request_token('34567890')
+
+The retrieved parameter token and secret should be used during the oAuth
+process, and url is the endpoint where Bluevia shall authenticate the user.
+In case of a Rails application, the lines below could be used:
+
+    token, token_secret, url = @service.get_request_token(
+                            'http://foo.bar/bluevia/get_access')
+    cookies[:token] = '#{token}|#{token_secret}'
+    redirect_to(url)
+
+Both tokend and token_secret must be saved by the application provider
+because oAuth process will require it later.
+
+Once user is authenticated and she has authorized the application in 
+BlueVia portal, she should be redirected to the URL used as parameter before.
+Now it's time to fetch the valid token and token secret that shall identify
+the new user during any call to BlueVia API. Lines below show an example using Rails:
+
+    def get_access
+        oauth_verifier = params[:oauth_verifier]
+        get_token_from_cookie
+        @bc = BlueviaClient.new(
+        { :consumer_key   => CONSUMER_KEY,
+          :consumer_secret=> CONSUMER_SECRET
+        })
+        @service = @bc.get_service(:oAuth)
+        @token, @token_secret = @service.get_access_token(@request_token, @request_secret, oauth_verifier)
+    end
+
+    private
+        def get_token_from_cookie
+            cookie_token = cookies[:token]
+            unless cookie_token.nil?
+            cookie_token = cookie_token.split('|')
+            if cookie_token.size != 2
+                raise SyntaxError, 'The cookie is not valid'
+            end
+            @request_token = cookie_token[0]
+            @request_secret = cookie_token[1]
+        end
+    end
+
+## Using BlueviaClient to launch requests ##
+
+Most of requests when accessing Bluevia API are associated to a specific user,
+so when a BlueviaClient object is created both user token and 
+user token secret must be provided to identify user on behalf of
+whom the application wants to access BlueVia APIs.
+
+    @bc = BlueviaClient.new(
+       { :consumer_key   => CONSUMER_KEY,
+         :consumer_secret=> CONSUMER_SECRET,
+         :token          => USER_TOKEN,
+         :token_secret   => TOKEN_SECRET,
+         :uri            => 'https://api.bluevia.com'
+       })
+
+For two-legged oauth authentication use this alternative BlueviaClient object creation method.
+
+    @bc = BlueviaClient.new(
+       { :consumer_key   => CONSUMER_KEY,
+         :consumer_secret=> CONSUMER_SECRET,
+         :uri            => 'https://api.bluevia.com'
+       })
+
+## Send a SMS ##
+
+First of all, create the BlueviaClient object as shown before.
+
+Any operation available in BlueviaClient object is associated to 
+a specific service. Each service represents a specific enabler provided by Bluevia.
+
+In case of SMS, these two lines are required to send a SMS on behalf of the user:
+   
+    @service = @bc.get_service(:Sms)
+    info = @service.send(DESTINATIONS, TEXT)
+
+Or with some optional parameters:
+
+- endpoint for notifications
+- correlator for notifications   
+
+it gets: 
+
+    info = @service.send(DESTINATIONS, TEXT, ENDPOINT, CORRELATOR)
+
+## Send a MMS ##
+
+Use the following lines to send a MMS message.
+
+    @service = @bc.get_service(:Mms)
+    info = @service.send(DESTINATIONS)
+
+With some optional parameters:
+
+- multimedia file attachments. Valid content types :
+      - text/plain image/jpeg image/bmp image/gif image/png audio/amr audio/midi
+      - audio/mp3 audio/mpeg audio/wav video/mp4 video/avi video/3gpp 
+- text body
+- text subject
+- endpoint for notifications
+- correlator for notifications
+- activation flag for uri notification sending   
+
+it gets:
+
+    attach = Array.new
+    attach << Attach::Attachment.new( FILEPATH1, MIMETYPE1 )
+    attach << Attach::Attachment.new( FILEPATH2, MIMETYPE2 )
+    info = @service.send(DESTINATIONS, attach, BODY, SUBJECT, GETURI_FLAG)
+
+One attachment sending also allowed
+
+    attach = Attach::Attachment.new( FILEPATH1, MIMETYPE1 )
+    info = @service.send(DESTINATIONS, attach, BODY, SUBJECT, GETURI_FLAG)
+
+## MO Services ##
+
+Both SMS and MMS capabilities can be used to received messages from user,
+what is known as Mobile Originated operations.
+
+To receive SMS or MMS is required to start the notification system:
+
+   info = @service.start_mms_notification(VALID_REGISTRATION_ID,
+                                          URL_TO_GET_NOTIFICATIONS,
+                                          'correlator_id',
+                                          SMS_MMS_VALID_KEYWORD) 
+
+Or use the following lines to get received messages
+
+    messages = @service.get_messages(COUNTRY_SPECIAL_SHORT_CODE_NUMBER)
+    message_id = messages['messageIdentifier']
+    message = @service.get_message(COUNTRY_SPECIAL_SHORT_CODE_NUMBER, message_id)
+
+The result message object is a hash with this kind of structure :
+
+    {
+     'root-fields'=>
+     {
+       :type=>'application/json;charset=UTF-8',
+       :name=>'root-fields',
+       :tempfile=>'{\'message\':{\'address\':[{\'phoneNumber\':\'1234567\'}],\'originAddress\'
+         :{\'alias\':\'F70CD99201189AD2FEF3F5A23DF60349\'},\'subject\':\'MOKEYWORD\'}}',
+       :head=>'Content-Disposition: form-data; name=\'root-fields\'\r\nContent-Type: application
+         /json;charset=UTF-8\r\nContent-ID: <0.urn:uuid:638C7523F3BEC3AFDA1222262695929@apache.org>\r\n'
+     },
+     'attachments'=>
+     {
+       '<2>' =>
+       {
+         :type => 'text/plain',
+         :name => '<2>',
+         :tempfile => 'Hola caracola',
+         :head => 'Content-Type: text/plain\r\nContent-Transfer-Encoding: binary\r\nContent-ID: <2>\r\n'
+       },
+       '<3>' =>
+       {
+         :type => 'image/jpeg;charset=UTF-8',
+         :name => '<3>',
+         :tempfile => '\xFF\xD8\xFF\xE0\x00\x10JFIF\x00\x01\x01 ...',
+         :head => 'Content-Type: audio/midi;charset=UTF-8\r\nContent-Transfer-Encoding: 
+           binary\r\nContent-ID: <4>\r\n
+       }
+       ...
+     }
+    }
+
+## Request Directory Info ##
+
+Use these lines to get user info
+
+    @service = @bc.get_service(:Directory)
+    response = @service.get_user_info()
+
+Or with optional parameter to get specfic user info:
+
+    response = @service.get_user_info(TYPE)
+
+Here it's a sample:
+
+    response = @service.get_user_info(Directory::USER_IDENTITIES) 
+
+## Get Ad ##
+
+With Advertising API a developer can fetch an ad to include in her application.
+Two-legged oauth authentication is allowed with this API. Thus, please use the alternative BlueviaClient
+creation method as showed above.
+
+There are some required parameters:
+
+- user_agent
+- ad_request_id
+- ad_space
+
+And also optional parameters:
+
+- ad_presentation
+- ad_presentation_size
+- keywords
+- protection_policy
+- country (It's a required parameter if two-legged oauth authentication is choosen. ISO-3166)
+
+All parameters should be include in a single Hash object:
+
+    @service = @bc.get_service(:Advertising)
+    params = {
+       :user_agent => AGENT,
+       :ad_request_id => RANDOMSTRING_OR_EMPTY_STRING,
+       :ad_space => ADSPACE,
+    }
+    ad = @service.request(params)
+
+Here it's a sample:
+
+    params = 
+    {
+        :user_agent => 'Mozilla 5.0',
+        :ad_request_id => 'a1x4zasg58',
+        :ad_space => '1200',
+        :keywords => 'bar'
+    }
+    ad = @service.request(params)
+
+## Location ##
+
+With Location API, a developer can fetch his location to include it in the application
+There is an optional parameter :
+
+- acc_accuracy - Accuracy that is acceptable for a response
+
+which leads to:
+
+    @service = @bc.get_service(:Location)
+    location = @service.get_location(acc_accuracy)
+
+## Payment ##
+
+With Payment API. a developer can make payments on a specific payment service supported
+by Bluevia infrastructure.
+There is a special kind of three ledged oAuth authorization system for this api. It's actually
+integrated in the Bluevia SDK client for payment, so you don't have to use the Bluevia SDK oAuth
+client. For this process you have to provide the exact payment information.
+
+    @service = @bc.get_service(:Payment)
+    paymentInfo = Schemas::Payment_types::PaymentInfoType.new(amount, currency)
+    params = {
+      :callback => 'oob',
+      :paymentInfo => paymentInfo,
+      :name => SERVICEINFO_NAME,
+      :serviceID => SERVICEINFO_SERVICEID
+    }
+    request_token, request_secret, url = @service.get_payment_request_token( params )
+
+This time :callback can't be a msisdn but is still an optional parameter.
+
+The result includes the request token and token secret, and the user authorization url, in
+order to get the user pin code. You can also provide a callback for automatic redirection,
+for web implementation. Request token and token secret are also kept inside the client for
+convenience when calling the following process of getting access token and secret.  
+
+    params = { :pin => USER_PIN_CODE, 
+      :token => request_token, 
+      :token_secret=> request_secret}
+    result = @service.get_payment_access_token( params )
+
+Request tokens are preserved for 48 hours, untill used in a payment request or cancelled. Hence
+developer alternatively may create another Bluevia SDK payment client and use this call to get
+the access token information.
+
+It's possible to make just one payment for every token.
+
+    pInfo = Schemas::Payment_types::PaymentInfoType.new(amount, currency)
+    result= Schemas::Payment_types::PaymentResultType.new()
+    result = @service.payment({:paymentInfo => pInfo})
+
+Then the developer may use the :transactionId parameter received in the result to get the status
+information of the transactionId
+
+    result =Schemas::Payment_types::GetPaymentStatusResultType.new()
+    result = @service.get_payment_status( TRANSACTION_ID )
+
+If the token is no longer needed it's also possible to cancel the authorization
+
+    result = @service.cancel_authorization()
