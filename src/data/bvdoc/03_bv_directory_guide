@@ -1,0 +1,189 @@
+
+ Bluevia Directory Client Guide
+
+ Introduction
+
+    Bluevia Directory API is a set of functions which allows users to retrieve 
+    user-related information, divided in four blocks (user profile, access information, 
+    personal information and terminal information). 
+    This guide represents a practical introduction to developing applications in which
+    user wants to provide the Bluevia Directory functionality.
+
+ Directory client basics
+	
+	A Directory client represents the client side in a classic client-server schema. 
+	This object wraps up the underlying REST client side functionality needed to perform 
+	requests against a REST server. 
+
+	Any Bluevia client performs requests and receives responses in a secure mode. Clients 
+	are authorized following the OAuth protocol. This security protocol enables users to 
+	grant third-party access to their resources without sharing their passwords. So 
+	clients store the authorization data -called security credentials- to grant access 
+	to the server.
+	 
+	Following sections describe the security credentials we are talking about.
+	
+ Creating a Directory client: BVDirectory class 
+ 
+    First step for using Directory client is to create a BVDirectory object. This object 
+    can have three different working modes: 
+    
+    - LIVE or BVMODE::LIVE Your application uses real network, which means that you will 
+      be able to send real transactions to real Movistar, O2 and Vivo customers in the
+      applicable country.
+    - TEST or BVMODE::TEST Behave exactly likes Live mode, but API calls are free of 
+      chargue, using a credits system. You are required to have a Movistar, O2 or Vivo 
+      mobile number to get this monthly credits.
+    - SANDBOX or BVMODE::SANDBOX Sandbox environment offers you the exact same experience 
+      as Live environment except that no traffic is generated on live network.
+ 
+ Directory client features: security credentials
+
+    Bluevia uses OAuth as its authentication mechanism which enables websites and 
+    applications to access Bluevia API's without end users disclosing their personal 
+    credentials.
+	
+    In order to grant access to the server any client has to be created passing the 
+    security credential as parameter in its constructor. These security credentials 
+    are managed internally and added as a HTTP header in every request sent to the server.
+	 
+    Such Oauth security credentials are:
+	
+	- Consumer key: String identifying the application (obtained when you registered 
+	  your application within the provisioning portal.
+	- Consumer secret: A secret -a string- used by the consumer to establish ownership 
+	  of the consumer key.
+	- Access token: Token -a string- used by the client for granting access permissions 
+	  to the server.
+	- Access token secret: The secret of the access token.
+ 
+ Directory client features: code example
+ 	
+    Find below an example on how to create an Oauth 3-legged Directory client taking 
+    into account all the information previously given.
+	
+    # three-legged directory client
+    @bc = BVDirectory.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]",
+    						"[TOKEN_KEY]","[TOKEN_SECRET]") 	
+ 
+ Retrieving User Info
+ 	
+    Use these lines to get all available user info
+    
+      response = @bc.get_user_info
+      
+    Returns a Bluevia::Schemas::UserInfo object that contains four objects with 
+    different information required (PersonalInfo, Profile, TerminalInfo and AccessInfo) 
+
+ Selecting blocks in requests
+
+    In case the user doesn't want to retrieve all blocks, there is an option to 
+    retrieve only a subset of the available information, using filters. An array 
+    of DataSets can be included in the request selecting the desired info blocks:
+    
+      response = @bc.get_user_info([Bluevia::Schemas::DirectoryDataSets::USER_ACCESS_INFO, 
+                                    Bluevia::Schemas::DirectoryDataSets::USER_PROFILE])
+      
+    DirectoryDataSets class is provided to ease user filtering.
+
+ Code examples
+ 
+    begin
+
+	  # 1. Create the client (you have to choose the mode and include the OAuth 
+	  # authorization values)
+	  @bc = BVDirectory.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]",
+    						"[TOKEN_KEY]","[TOKEN_SECRET]") 
+
+	  # 2. Request user info. 
+	  response = @bc.get_user_info
+
+	  # 3. Process the response
+	  unless response.nil?
+	    personal_information = response.personal_info
+	    access_information   = response.access_info
+	    profile_information  = response.profile
+	    terminal_information = response.terminal_info
+	  end
+	  
+    rescue BlueviaError => e
+	  puts e.code
+	  puts e.message
+	  # as for example
+    end
+	
+    Individual blocks can be obtained through its own method, as can be seen below:
+
+ Methods for retrieving individual block information
+	
+    User can access four different blocks of information about target using DataSet 
+    filtering, but specific method for every block can be used as follows: 
+    
+      # To get User Access Info block
+      # As with dataset USER_ACCESS_INFO
+      # returns a Bluevia::Schemas::AccessInfo object
+      
+      response = @bc.get_access_info
+      
+      # To get User Profile Info block
+      # As with dataset USER_PROFILE
+      # returns a Bluevia::Schemas::Profile object      
+      
+      response = @bc.get_profile_info
+
+      # To get User Terminal Info block
+      # As with dataset USER_TERMINAL_INFO
+      # returns a Bluevia::Schemas::TerminalInfo object
+      
+      response = @bc.get_terminal_info
+
+      # To get User Personal Info block
+      # As with dataset USER_PERSONAL_INFO
+      # returns a Bluevia::Schemas::PersonalInfo object
+      
+      response = @bc.get_personal_info
+      
+ Using filters in requests	
+
+	Using those specific methods user can filter the information returned from 
+	the server using fields filtering in every method. This functionality consists 
+	on including as parameter an array of fields (different values for every method).
+	
+	In case the user doesn't want to retrieve the whole block, there is an option 
+	to retrieve only a subset of the available information, using these filters. 
+	
+	Next classes are provided to ease fields filtering:
+	
+	   Bluevia::Schemas::AccessFields for get_access_info method
+	   Bluevia::Schemas::PersonalFields for get_personal_info
+	   Bluevia::Schemas::TerminalFields for get_terminal_info
+	   Bluevia::Schemas::ProfileFields for get_profile_info
+	  
+	   See next code examples:
+	  
+	   require 'bluevia/schemas'
+	  
+	   # get_access_info with fields filtering
+	   access_information = @bc.get_access_info([AccessFields::ACCESS_TYPE, 
+                                                 AccessFields::ROAMING])
+	  
+	   atype = access_information.access_type
+	   roam  = access_information.roaming
+	   
+	   # get_terminal_info with fields filtering
+	   terminal_information = @bc.get_terminal_info([TerminalFields::BRAND, 
+                                                     TerminalFields::EMS, 
+                                                     TerminalFields::SCREEN_RESOLUTION])
+	   brand_information = terminal_information.brand
+	   model_information = terminal_information.model # nil 
+	   ems_information = terminal_information.ems
+       
+	   # get_profile_info with fields filtering
+	   profile_information = @bc.get_profile_info([ProfileFields::ICB, 
+                                                   ProfileFields::PARENTAL_CONTROL])
+	   icb_information = profile_information.icb
+	   parental_information = profile_information.parental_control
+	   
+	   # get_personal_info with fields filtering
+	   personal_information = @bc.get_personal_info([PersonalFields::GENDER])
+	   gender_information = personal_information.gender

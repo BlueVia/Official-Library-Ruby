@@ -1,0 +1,180 @@
+
+ Bluevia Payment Client Guide
+
+ Introduction
+
+    The Bluevia Payment API is a set of functions that enables individual, 
+    atomic payments based on input economic information. This guide represents 
+    a practical introduction to developing applications in which the user wants 
+    to provide the Bluevia Payment functionality.
+
+ Bluevia Payment API: making payment sessions    
+
+    A payment session allows to charge a precise, economic amount, on the user's account.
+    
+ Payment Client basics
+ 
+    Payment client represents the client side in a classic client-server schema. 
+    This object wraps up the underlying RPC client side functionality needed to 
+    perform requests against a RPC server. 
+
+    Any Bluevia client performs requests and receives responses in a secure mode. 
+    Clients are authorized following the OAuth protocol. This security protocol 
+    enables users to grant third-party access to their resources without sharing 
+    their passwords. So clients store the authorization data -called security 
+    credentials- to grant access to the server. 
+
+    Bluevia Payment API uses an extension of OAuth protocol to guarantee secure 
+    payment operations. For each payment the user makes he must complete the OAuth 
+    process to identify itself and get a valid access token. These tokens will be 
+    valid for 48 hours and then will be dismissed. Following sections describe 
+    what security credentials we are talking about and the modifications this API needs.
+  
+ Creating a Payment client: BVPayment class 
+ 
+    First step for using Payment client is to create a BVPayment object. This 
+    object can have three different working modes: 
+    
+    - LIVE or BVMODE::LIVE Your application uses real network, which means that you 
+      will be able to send real transactions to real Movistar, O2 and Vivo customers 
+      in the applicable country.
+    - SANDBOX or BVMODE::SANDBOX Sandbox environment offers you the exact same 
+      experience as Live environment except that no traffic is generated on live network.
+ 
+ Payment API OAuth protocol
+     
+    Bluevia uses OAuth as its authentication mechanism which enables websites and 
+    applications to access Bluevia API's without end users disclosing their personal 
+    credentials.
+    
+    In order to grant access to the server any client has to be created passing the 
+    security credential as parameter in its constructor. These security credentials 
+    are managed internally and added as a HTTP header in every request sent to the server.
+     
+    Such Oauth security credentials are:
+	
+    - Consumer key: String identifying the application (obtained when you registered 
+      your application within the provisioning portal.
+    - Consumer secret: A secret -a string- used by the consumer to establish ownership 
+      of the consumer key
+ 
+    To authorize each payment operation a new valid access token has to be retrieved, 
+    completing this special OAuth process.
+ 	
+ Payment client features: code example
+ 
+    Note that this feature is only available for SANDBOX and LIVE modes. 
+      
+    @bc = BVPayment.new(BVMode::LIVE,"[CONSUMER_KEY]","[CONSUMER_SECRET]")
+    
+ Step 1: retrieving a request token
+
+    First, you have to retrieve a request token to be authorised by the user. 
+    In this case you have to use the get_payment_request_token function, which 
+    includes the Payment info besides the usual request tokens params:
+	
+    @request_payment_token = @bc.get_payment_request_token(amount, currency, name, 
+                                                           service_id, 
+                                                           callback = "oob")
+    
+    This time :callback can't be a msisdn but is still an optional parameter.
+    
+    As with BVOauth client, response is a RequestToken object that includes the request 
+    token and secret, and the user authorization url, in order to get the user pin code. 
+    You can also provide a callback for automatic redirection, for web implementation. 
+    Request token and token secret are also kept inside the client for
+    convenience when calling the following process of getting access token and secret.  
+
+ Step 2: retrieveing an access token
+
+    With the obatined oauth_verifier, you can now get the access token from the user 
+    using the function:
+
+       result = @service.get_payment_access_token( USER_PIN_CODE )
+ 
+ Step 3: making a payment        
+ 
+    Request tokens are preserved for 48 hours, untill used in a payment request or 
+    cancelled. Hence, developer alternatively may create another BVPayment client and 
+    use this call to get the access token information (set_token method use below). 
+    
+       @bc.set_token(access_token)
+    
+    Then payment method can be called. It's a once shot function. Once used with a 
+    oauth token, given in the client constructor, it cannot be used again to make a 
+    payment (but it can be used to retrieve the status of the operation).
+	
+    If the result status of the process of payment is successful then a transaction 
+    identifier is returned in a Bluevia::Schemas::PaymentResult.
+	
+    This function provides the main feature of the API, making payments.
+
+    It is possible to receive status notifications by providing Bluevia with an 
+    URI where notifications must be sent:
+    
+       response = @bc.payment(amount, currency, endpoint, correlator)
+    
+    Params:
+    
+	- amount: Amount to be charged, it may be an economic amount or a number of 
+	'virtual units' (points, tickets, etc) (mandatory). 
+	- currency: Type of currency which corresponds with the amount above, following
+	ISO 4217 (mandatory).
+	- endpoint:  Endpoint to receive notifications of payments operations (optional). 
+	- correlator:  An string to correlate the requests and the notifications (optional).
+	
+ Payment client features : get payment status    
+    
+    'get_payment_status' function allows to request the status of a previous payment 
+    operation. 
+    
+    Use its transaction identifier as sole parameter. 
+    
+       result = @bc.get_payment_status(response.transaction_id)
+      
+    returns a Bluevia::Schemas::PaymentStatus object with transaction_status and 
+    transaction_status_description.
+
+ Payment client features : cancel_authorization 
+ 
+    If token is no longer needed it's also possible to cancel the authorization
+
+       result = @bc.cancel_authorization()
+    
+    returns true if successful and false if unsuccessful
+ 
+ Bluevia Payment API: code examples
+    
+    begin
+
+	  # 1. Create client (you have to choose the mode and include the OAuth 
+	  # authorization values. No access token is needed)
+	
+  	  @bc = BVPayment.new(BVMode::LIVE,"[CONSUMER_KEY]","[CONSUMER_SECRET]")
+
+	  # 2. OAuth process
+	  @payment_request = @bc.get_payment_request_token("100", "GBP", "bluevia", 
+                                                        "service_id")
+	
+	  # Authorization in Bluevia Connect Portal
+	  # Get OAuth verifier from GUI
+	  oauth_verifier = "12345"
+	  @payment_access = @bc.get_payment_access_token(oauth_verifier, 
+                                                     payment_request.token, 
+                                                     payment_request.secret)
+
+	  # 3. Make payment
+	  result = @bc.payment("100", "GBP");
+	
+	  transaction_identifier = result.transaction_id
+
+	  # 4. Get Payment status
+	  status = @bc.get_payment_status transaction_identifier
+	  status_information = status.transaction_status
+	
+    rescue BlueviaError => e
+	  puts e.code
+	  puts e.message
+	  # as for example
+    end
+	

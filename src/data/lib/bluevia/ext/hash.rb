@@ -5,6 +5,8 @@ require 'nokogiri'
 # Please, check out www.bluevia.com and if you need more information
 # contact us at mailto:support@bluevia.com
 # 
+
+#
 # Extension of Hash to create a Hash table using as input an XML
 # that should be decoded using Nokogiri library
 #
@@ -33,7 +35,7 @@ class Hash
           node.children.each do |child|
             result = xml_node_to_hash(child)
 
-            if child.name == "text"
+            if child.kind_of? Nokogiri::XML::Text
               unless child.next_sibling || child.previous_sibling
                 return prepare(result)
               end

@@ -1,0 +1,138 @@
+
+ Bluevia SMS Mobile Terminated client Guide
+
+ Introduction
+
+    The Bluevia SMS API is a set of functions which allows users to send SMS 
+    messages and to request the status of those previously sent SMS messages. 
+    This guide represents a practical introduction to developing applications 
+    in which the user wants to provide the Bluevia SMS functionality.
+
+ SMS MT client basics
+	
+	A SMS MT client represents the client side in a classic client-server schema. 
+	This object wraps up the underlying REST client side functionality needed to 
+	perform requests against a REST server. 
+
+	Any Bluevia client performs requests and receives responses in a secure mode. 
+	Clients are authorized following the OAuth protocol. This security protocol 
+	enables users to grant third-party access to their resources without sharing 
+	their passwords. So clients store the authorization data -called security 
+	credentials- to grant access to the server. 
+	
+	Following sections describe the security credentials we are talking about.
+	
+ Creating a SMS MT client: BVMtSms class 
+ 
+    First step for using Bluevia's SMS Mobile Terminated features is to create a 
+    BVMtSms object. 
+ 	
+    This object can have three different working modes: 
+    
+    - LIVE or BVMODE::LIVE Your application uses real network, which means that you 
+      will be able to send real transactions to real Movistar, O2 and Vivo customers 
+      in the applicable country.
+    - TEST or BVMODE::TEST Behave exactly likes Live mode, but API calls are free
+      of chargue, using a credits system. You are required to have a Movistar, O2 
+      or Vivo mobile number to get this monthly credits.
+    - SANDBOX or BVMODE::SANDBOX Sandbox environment offers you the exact same 
+      experience as Live environment except that no traffic is generated on live network.
+ 
+ SMS MT client features: security credentials
+
+    Bluevia uses OAuth as its authentication mechanism which enables websites and 
+    applications to access Bluevia API's without end users disclosing their personal 
+    credentials.
+    
+    In order to grant access to the server any client has to be created passing the 
+    security credential as parameter in its constructor. These security credentials 
+    are managed internally and added as a HTTP header in every request sent to the server. 
+    Such Oauth security credentials are:
+	
+	- Consumer key: String identifying the application (obtained when you registered 
+	  your application within the provisioning portal.
+	- Consumer secret: A secret -a string- used by the consumer to establish ownership 
+	  of the consumer key
+	- Access token: Token -a string- used by the client for granting access permissions 
+	  to the server.
+	- Access token secret: The secret of the access token.
+ 
+ SMS MT client features: code example
+ 	
+    Find below an example on how to create an Oauth 3-legged SMS MT client taking 
+    into account all the information previously given.
+	
+    # three-legged SMS MT client
+    @bc = BVMtSms.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]",
+    						"[TOKEN_KEY]","[TOKEN_SECRET]") 	
+
+ Sending SMS messages
+
+    The BVMtSms object allows sending SMS messages through 'send' method. 
+    By means of this feature an user can send SMS to one or more phone numbers, 
+    and to include an endpoint to receive delivery status notifications.
+
+    Take a look at this function:
+	
+      def send(destination, text, endpoint = nil, correlator = nil)
+	
+    It sends a text message to a list of destinations (destination can be an array). 
+    Endpoint and correlator are optional parameters and are included to receive 
+    status notifications. 
+	
+    This function returns the SMS Id which indentifies that sending operation. 
+    This identification is useful to retrieve the delivery status of that SMS message
+    using a polling method.
+
+ Requesting the status of a previously sent SMS messages
+
+	Once SMS message is sent successfully user may want to know the delivery status 
+	of that SMS message. Sms client allows an user to determine if the SMS message 
+	reaches destination or not. 'get_deliver_status' method is created for this. 
+	Just needs this SMS Id -returned by the send function- and retrieve the delivery 
+	status of that message, so easy!.
+
+ 	Take a look at this function:
+ 	
+ 	  def get_delivery_status (message_id)
+ 	
+ 	It obtains the delivery status of a previously sent SMS message.
+
+	There are six possible delivery statuses and they are accesible through 
+	Bluevia::BVDELIVERYSTATUSMESSAGES array:
+	
+	- DeliveredToNetwork.
+	- DeliveryUncertain.
+	- DeliveryImpossible.
+	- MessageWaiting.
+	- DeliveredToTerminal.
+	- DeliveryNotificationNotSupported.
+
+ Bluevia SMS MT API: code example
+
+    begin
+	
+      # 1. Create the client (you have to choose the mode and include the OAuth 
+      authorization values)
+  	  
+      @bc = BVMtSms.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]",
+    						"[TOKEN_KEY]","[TOKEN_SECRET]")
+      # 2. Send the message.
+      sms_id = @bc.send("600010101", "This is the text to be sent using Bluevia API")
+
+      # 3. Retrieve the delivery status of the sent SMS.
+      # get_delivery_status returns an array of Bluevia::Schemas::DeliveryInfo objects
+      status_obj = @bc.get_delivery_status(sms_id)
+	  
+      status_obj.each{ |info_sms|
+        dest = info_sms.destination
+        stat = info_sms.status
+        desc = info_sms.status_description
+        }
+	
+    rescue BlueviaError => e
+      puts e.code
+      puts e.message
+      # as for example
+    end
+		

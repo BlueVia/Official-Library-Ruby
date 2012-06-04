@@ -1,0 +1,166 @@
+
+ Bluevia MMS Mobile Terminated client guide
+ 
+ Introduction
+
+    Bluevia MMS API is a set of functions which allows users to send MMS messages 
+    and to request the status of those previously sent MMS messages. This guide 
+    represents a practical introduction to developing applications in which the 
+    user wants to provide the Bluevia MMS functionality.
+
+ MMS MT client basics
+	
+	A MMS MT client represents the client side in a classic client-server schema. 
+	This object wraps up the underlying REST client side functionality needed to perform 
+	requests against a REST server. 
+
+	Any Bluevia client performs requests and receives responses in a secure mode. 
+	Clients are authorized following the OAuth protocol. This security protocol enables users to 
+	grant third-party access to their resources without sharing their passwords. So clients 
+	store the authorization data -called security credentials- to grant access to the server. 
+	Following sections describe the security credentials we are talking about.
+	
+ Creating a MMS MT client: BVMtMms class 
+ 
+    First step for using Bluevia's MMS Mobile Terminated features is to create a 
+    BVMtMms object. 
+    
+    - LIVE or BVMODE::LIVE Your application uses real network, which means that you will be 
+      able to send real transactions to real Movistar, O2 and Vivo customers in the applicable country.
+    - TEST or BVMODE::TEST Behave exactly likes Live mode, but API calls are free of chargue, 
+      using a credits system. You are required to have a Movistar, O2 or Vivo mobile number to get
+      this monthly credits.
+    - SANDBOX or BVMODE::SANDBOX Sandbox environment offers you the exact same experience as Live 
+      environment except that no traffic is generated on live network.
+ 
+ MMS MT client features: security credentials
+
+    Bluevia uses OAuth as its authentication mechanism which enables websites and applications to 
+    access Bluevia API's without end users disclosing their personal credentials.
+	
+    In order to grant access to the server any client has to be created passing the security 
+    credential as parameter in its constructor. These security credentials are managed internally 
+    and added as a HTTP header in every request sent to the server. 
+    Such Oauth security credentials are:
+	
+	- Consumer key: String identifying the application (obtained when you registered your application
+	  within the provisioning portal.
+	- Consumer secret: A secret -a string- used by the consumer to establish ownership of the
+	  consumer key
+	- Access token: Token -a string- used by the client for granting access permissions to 
+	  the server.
+	- Access token secret: The secret of the access token.
+ 
+ MMS MT client features: code example
+ 	
+    Find below an example on how to create an Oauth 3-legged MMS MT client taking into account 
+    all the information previously given.
+	
+    # three-legged MMS MT client
+    @bc = BVMtMms.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]",
+    						"[TOKEN_KEY]","[TOKEN_SECRET]") 	
+    
+ Sending MMS messages
+
+    The BVMtMms object allows sending MMS messages through 'send' method. 
+    By means of this feature an user can send MMS to one or more phone numbers, 
+    and to include an endpoint to receive delivery status notifications.
+
+    Take a look at this function:
+	
+	def send(destination, subject, message = nil, attachment = nil, endpoint = nil, correlator = nil)
+	
+	Params: 
+	
+	- destination: Array or string with the destination numbers
+	- subject: Subject for the multimedia message
+	- message: Text message of the MMS
+	- attachment: Multimedia files to send. 
+	- endpoint: Endpoint to receive notifications of sent MMSs
+	- correlator: Correlator to receive notifications of sent MMSs
+    
+    'attachment' is an array full of Bluevia::Schemas::Attachment objects
+    This object has two elements: filename (complete path to the file) and mimetype.
+    
+    Mime types allowed are:
+    
+    - text/plain 
+    - image/jpeg 
+    - image/bmp 
+    - image/gif 
+    - image/png 
+    - audio/amr 
+    - audio/midi  
+    - audio/mp3 
+    - audio/mpeg 
+    - audio/wav 
+    - video/mp4 
+    - video/avi 
+    - video/3gpp
+	
+    This function returns the MMS Id which indentifies that sending operation. 
+    This identification is useful to retrieve the delivery status of that MMS message
+    using a polling method.
+
+ Requesting the status of a previously sent MMS messages
+
+	Once MMS message is sent successfully user may want to know the delivery status 
+	of that MMS message. Mms client allows an user to determine if the MMS message 
+	reaches destination or not. 'get_deliver_status' method is created for this. 
+	Just needs this MMS Id -returned by the send function- and retrieve the delivery 
+	status of that message, so easy!.
+
+ 	Take a look at this function:
+ 	
+ 	  def get_delivery_status (message_id)
+ 	
+ 	It obtains the delivery status of a previously sent MMS message.
+
+	There are six possible delivery statuses and they are accesible through 
+	Bluevia::BVDELIVERYSTATUSMESSAGES array:
+	
+	- DeliveredToNetwork.
+	- DeliveryUncertain.
+	- DeliveryImpossible.
+	- MessageWaiting.
+	- DeliveredToTerminal.
+	- DeliveryNotificationNotSupported.
+
+ Bluevia MMS MT API: code example
+
+	begin
+	
+ 	  # 1. Create the client (you have to choose the mode and include the OAuth authorization values)
+ 	  @bc = BVMtMms.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONS UMER_SECRET]",
+    						"[TOKEN_KEY]","[TOKEN_SECRET]")
+ 	  # 2. If required, create attachment array
+ 	  filepathmms         = "./sdk_test/text.txt"
+ 	  mimetypemms         = "text/plain"   	
+      
+ 	  # Full path required
+ 	  filepathmms= File.expand_path(filepathmms)
+ 	  attach = Array.new
+ 	  attach << Bluevia::Schemas::Attachment.new(
+ 	  	filepathmms,
+ 	  	mimetypemms
+ 	  	)
+      	      					
+	  # 3. Send the message
+	  mms_id = @bc.send("600010101", "MMS subject", "This is the text to be sent using 
+                         Bluevia API", attach)
+
+	  # 4. Retrieve the delivery status of the sent MMS.
+	  # get_delivery_status returns an array of Bluevia::Schemas::DeliveryInfo objects
+	  status_obj = @bc.get_delivery_status(mms_id)
+	  
+	  status_obj.each{ |info_mms|
+        dest = info_mms.destination
+        stat = info_mms.status
+        desc = info_mms.status_description
+	    }
+	
+	rescue BlueviaError => e
+	  puts e.code
+	  puts e.message
+	  # as for example
+	end

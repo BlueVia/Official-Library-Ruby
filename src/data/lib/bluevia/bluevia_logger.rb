@@ -8,6 +8,7 @@ require 'logger'
 
 
 module BlueviaLogger
+  
   def logger=(value)
     $logger = value
   end

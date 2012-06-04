@@ -4,10 +4,10 @@
 # contact us at mailto:support@bluevia.com
 #
 
-require 'bluevia/errors/server_error'
-require 'bluevia/errors/client_error'
-require 'bluevia/errors/not_found_error'
+%w[connection_error bluevia_error].each{|file| require "bluevia/errors/#{file}"}
+
 
 module Bluevia::Errors
+  
 
 end

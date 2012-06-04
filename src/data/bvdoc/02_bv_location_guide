@@ -1,0 +1,92 @@
+
+ Bluevia Location Client Guide
+
+ Introduction
+
+    Bluevia Location API is a set of functions which allows users to retrieve the 
+    geographical coordinates of a terminal where Location is expressed through a 
+    latitude, longitude, altitude and accuracy. Such operation covers the requesting 
+    for the location of a terminal.
+    
+ Location client Basics 
+ 	
+ 	A Location client represents the client side in a classic client-server schema. 
+ 	This object wraps up the underlying REST client side functionality needed to 
+ 	perform requests against a REST server.
+
+	Any Bluevia client performs requests and receives responses in a secure mode. 
+	Clients are authorized following the OAuth protocol. This security protocol 
+	enables users to grant third-party access to their resources without sharing 
+	their passwords.
+	 
+	So clients store the authorization data -called security credentials- to grant 
+	access to the server. The following sections describe what security credentials 
+	we are talking about.
+
+ Creating a Location client: BVLocation class
+
+    First step for using Advertising client is to create a BVLocation object. This 
+    object can have three different working modes: 
+    
+    - LIVE or BVMODE::LIVE Your application uses real network, which means that you 
+      will be able to send real transactions to real Movistar, O2 and Vivo customers 
+      in the applicable country.
+    - TEST or BVMODE::TEST Behave exactly likes Live mode, but API calls are free of 
+      chargue, using a credits system. You are required to have a Movistar, O2 or Vivo 
+      mobile number to get this monthly credits.
+    - SANDBOX or BVMODE::SANDBOX Sandbox environment offers you the exact same 
+      experience as Live environment except that no traffic is generated on live network.
+	
+ Location client features: security credentials
+
+	Bluevia uses OAuth as its authentication mechanism which enables websites and 
+	applications to access Bluevia API's without end users disclosing their personal 
+	credentials.
+	
+	In order to grant access to the server any client has to be created passing the 
+	security credential as parameter in its constructor. These security credentials 
+	are managed internally and added as a HTTP header in every request sent to the server.
+	 
+	Such Oauth security credentials are:
+	
+	- Consumer key: String identifying the application (obtained when you registered 
+	  your application within the provisioning portal.
+	- Consumer secret: A secret -a string- used by the consumer to establish ownership 
+	  of the consumer key.
+	- Access token: Token -a string- used by the client for granting access permissions 
+	  to the server.
+	- Access token secret: The secret of the access token.
+	
+ Location client features: code example
+
+    Find below an example about how to create a Location client taking into account 
+    all information previously given. This snippet shows how to access a Bluevia 
+    server using OAuth security credentials
+
+    # three-legged advertising client
+    @bc = BVLocation.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]",
+    					"[TOKEN_KEY]","[TOKEN_SECRET]")
+
+ Retrieving the geographical coordinates of a terminal
+
+	'get_location' function allows an user to retrieve the geographical coordinates 
+	of a terminal. These geographical coordinates are expressed through a latitude, 
+	longitude, altitude and accuracy.
+
+	Take a look at the get_location function signature:
+	
+	location = @bc.get_location(acc_accuracy = nil)
+
+ Retrieving location: processing the response
+
+	Bluevia::Schemas::LocationInfo object contains:
+	
+	- report_status: element indicating whether the response contains valid location 
+	  data, or an error has occurred.
+	- coordinates_latitude: Indicates the user location, which represents latitud 
+	  (in degrees) 
+	- coordinates_longitude: Indicates the user location, which represents longitud 
+	  (in degrees)
+	- accuracy : Indicates the user location, which represents accuracy (in meters)
+	- timestamp: Timestamp for the request
+	 

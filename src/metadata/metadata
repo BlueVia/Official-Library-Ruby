@@ -2,7 +2,7 @@
 name: bluevia
 version: !ruby/object:Gem::Version 
   prerelease: 
-  version: "1.0"
+  version: "1.6"
 platform: ruby
 authors: 
 - Bluevia
@@ -10,7 +10,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2010-01-28 00:00:00 Z
+date: 2012-05-31 00:00:00 Z
 dependencies: 
 - !ruby/object:Gem::Dependency 
   name: httpclient
@@ -79,36 +79,36 @@ dependencies:
   type: :runtime
   version_requirements: *id006
 - !ruby/object:Gem::Dependency 
-  name: mime-types
+  name: xml-simple
   prerelease: false
   requirement: &id007 !ruby/object:Gem::Requirement 
     none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        version: "1.16"
+        version: 1.1.0
   type: :runtime
   version_requirements: *id007
 - !ruby/object:Gem::Dependency 
-  name: xml-simple
+  name: rack
   prerelease: false
   requirement: &id008 !ruby/object:Gem::Requirement 
     none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        version: 1.1.0
+        version: 1.3.0
   type: :runtime
   version_requirements: *id008
 - !ruby/object:Gem::Dependency 
-  name: rack
+  name: activerecord
   prerelease: false
   requirement: &id009 !ruby/object:Gem::Requirement 
     none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        version: 1.3.0
+        version: 3.0.0
   type: :runtime
   version_requirements: *id009
 description: Ruby SDK for BlueVia allows you to use the BueVia public API                      from your Ruby application using just few lines of code.
@@ -120,39 +120,82 @@ extensions: []
 extra_rdoc_files: 
 - UserGuide
 - LICENSE.LGPLv3
+- bvdoc/00_bv_oauth_guide
+- bvdoc/01_bv_advertising_guide
+- bvdoc/02_bv_location_guide
+- bvdoc/03_bv_directory_guide
+- bvdoc/04_bv_payment_guide
+- bvdoc/05_bv_sms_mt_guide
+- bvdoc/06_bv_mms_mt_guide
+- bvdoc/07_bv_sms_mo_guide
+- bvdoc/08_bv_mms_mo_guide
 files: 
-- lib/bluevia/mms.rb
-- lib/bluevia/bluevia_client.rb
+- lib/bluevia/parsers/json_parser.rb
+- lib/bluevia/parsers/multipart_parser.rb
+- lib/bluevia/parsers/xml_parser.rb
 - lib/bluevia/errors.rb
-- lib/bluevia/response.rb
-- lib/bluevia/payment.rb
+- lib/bluevia/clients/bv_oauth_client.rb
+- lib/bluevia/clients/bv_location_client.rb
+- lib/bluevia/clients/bv_mt_mms.rb
+- lib/bluevia/clients/bv_directory_client.rb
+- lib/bluevia/clients/bv_mo_sms.rb
+- lib/bluevia/clients/bv_advertising.rb
+- lib/bluevia/clients/bv_location.rb
+- lib/bluevia/clients/commons/bv_mt_client.rb
+- lib/bluevia/clients/commons/bv_base_client.rb
+- lib/bluevia/clients/commons/bv_mo_client.rb
+- lib/bluevia/clients/bv_mo_mms_client.rb
+- lib/bluevia/clients/bv_oauth.rb
+- lib/bluevia/clients/bv_mo_mms.rb
+- lib/bluevia/clients/bv_mt_mms_client.rb
+- lib/bluevia/clients/bv_directory.rb
+- lib/bluevia/clients/bv_mo_sms_client.rb
+- lib/bluevia/clients/bv_mt_sms_client.rb
+- lib/bluevia/clients/bv_advertising_client.rb
+- lib/bluevia/clients/bv_mt_sms.rb
+- lib/bluevia/clients/bv_payment.rb
 - lib/bluevia/schemas.rb
-- lib/bluevia/sms.rb
-- lib/bluevia/messaging.rb
-- lib/bluevia/base_client.rb
-- lib/bluevia/advertising.rb
+- lib/bluevia/config.rb
+- lib/bluevia/iserializer.rb
 - lib/bluevia/ext/hash.rb
-- lib/bluevia/errors/not_found_error.rb
-- lib/bluevia/errors/server_error.rb
-- lib/bluevia/errors/client_error.rb
-- lib/bluevia/location.rb
-- lib/bluevia/oauth_payment.rb
-- lib/bluevia/attach.rb
+- lib/bluevia/errors/connection_error.rb
+- lib/bluevia/errors/bluevia_error.rb
+- lib/bluevia/serializers/json_serializer.rb
+- lib/bluevia/serializers/multipart_serializer.rb
+- lib/bluevia/serializers/url_encoded_serializer.rb
+- lib/bluevia/iconnector.rb
 - lib/bluevia/bluevia_logger.rb
-- lib/bluevia/schemas/common_types.rb
-- lib/bluevia/schemas/sms_types.rb
-- lib/bluevia/schemas/payment_types.rb
-- lib/bluevia/schemas/mms_types.rb
-- lib/bluevia/schemas/location_types.rb
-- lib/bluevia/schemas/directory_types.rb
-- lib/bluevia/oauth.rb
+- lib/bluevia/schemas/sch_location.rb
+- lib/bluevia/schemas/sch_messaging.rb
+- lib/bluevia/schemas/sch_payment.rb
+- lib/bluevia/schemas/sch_advertising.rb
+- lib/bluevia/schemas/sch_oauth.rb
+- lib/bluevia/schemas/sch_directory.rb
+- lib/bluevia/schemas/sch_response.rb
 - lib/bluevia/utils.rb
-- lib/bluevia/directory.rb
-- lib/bluevia/ad_response.rb
-- lib/multipartable.rb
+- lib/bluevia/iparser.rb
 - lib/bluevia.rb
+- samples/demo_sms_mt.rb
+- samples/demo_directory.rb
+- samples/demo_payment.rb
+- samples/demo_oauth.rb
+- samples/demo_advertising.rb
+- samples/demo_mms_mo.rb
+- samples/demo_mms_mt.rb
+- samples/demo_location.rb
+- samples/demo_sms_mo.rb
+- samples/Movistar_tune.mp3
 - UserGuide
 - LICENSE.LGPLv3
+- bvdoc/00_bv_oauth_guide
+- bvdoc/01_bv_advertising_guide
+- bvdoc/02_bv_location_guide
+- bvdoc/03_bv_directory_guide
+- bvdoc/04_bv_payment_guide
+- bvdoc/05_bv_sms_mt_guide
+- bvdoc/06_bv_mms_mt_guide
+- bvdoc/07_bv_sms_mo_guide
+- bvdoc/08_bv_mms_mo_guide
 homepage: http://github.com/bluevia
 licenses: []
 
@@ -180,5 +223,14 @@ rubygems_version: 1.8.5
 signing_key: 
 specification_version: 3
 summary: This GEM provides an easy way to access Bluevia Public API
-test_files: []
-
+test_files: 
+- samples/demo_sms_mt.rb
+- samples/demo_directory.rb
+- samples/demo_payment.rb
+- samples/demo_oauth.rb
+- samples/demo_advertising.rb
+- samples/demo_mms_mo.rb
+- samples/demo_mms_mt.rb
+- samples/demo_location.rb
+- samples/demo_sms_mo.rb
+- samples/Movistar_tune.mp3

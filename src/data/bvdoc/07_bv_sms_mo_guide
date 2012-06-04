@@ -1,0 +1,122 @@
+
+ Bluevia SMS Mobile Originated Client Guide 
+
+ Introduction
+    
+    The Bluevia SMS API is a set of functions which allows users to receive SMS 
+    messages sent from a mobile phone. This guide represents a practical introduction 
+    to developing applications in which the user wants to provide the Bluevia SMS 
+    functionality.
+
+ SMS MO client basics
+
+    A SMS client represents the client side in a classic client-server schema. 
+    This object wraps up the underlying REST client side functionality needed to 
+    perform requests against a REST server. 
+
+    Any Bluevia client performs requests and receives responses in a secure mode. 
+    Clients are authorized following the OAuth protocol. This security protocol 
+    enables users to grant third-party access to their resources without sharing 
+    their passwords. So clients store the authorization data -called security 
+    credentials- to grant access to the server. Following sections describe what 
+    security credentials we are talking about.
+
+ Creating a SMS MO client: BVMoSms class
+ 
+    First step for using SMS MO client is to create a BVMoSms object. This object 
+    can have three different working modes: 
+    
+    - LIVE or BVMODE::LIVE Your application uses real network, which means that you 
+      will be able to send real transactions to real Movistar, O2 and Vivo customers 
+      in the applicable country.
+    - TEST or BVMODE::TEST Behave exactly likes Live mode, but API calls are free of 
+      chargue, using a credits system. You are required to have a Movistar, O2 or 
+      Vivo mobile number to get this monthly credits.
+    - SANDBOX or BVMODE::SANDBOX Sandbox environment offers you the exact same experience 
+      as Live environment except that no traffic is generated on live network.
+
+ SMS MO client features: security credentials
+
+    Bluevia uses OAuth as its authentication mechanism which enables websites and 
+    applications to access the Bluevia API's without end users disclosing their 
+    personal credentials.
+	
+    In order to grant access to the server any client has to be created passing 
+    the security credential as parameter in its constructor. These security credentials 
+    are managed internally and added as a HTTP header in every request sent to the server.
+	
+    Bluevia SMS MO API uses OAuth-2-legged since user's authorization is not required to 
+    received SMSs. Then, it is not neccessary for the user to pass through the OAuth 
+    process and there is no need of an access token. Mandatory Oauth security credentials 
+    for 2-legged mode are:
+    
+    - Consumer key: The string identifying the application- you obtained when you 
+      registered your application within the provisioning portal.
+    - Consumer Secret: A secret -a string- used by the consumer to establish ownership 
+      of the consumer key.
+
+ SMS MO client features: code example
+
+    Find below an example on how to create an BVMoSms Client taking into account all 
+    information previously given.
+
+    # two-legged BVMoSms client
+    @bc = BVMoSms.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]")
+
+ Receiving MMS messages: Polling to receive messages
+
+    Your application can receive SMS from users sent to Bluevia shortcodes including 
+    your application keyword. The parameter 'registration_id' corresponds to the shortcode 
+    of the country whose messages are being retrieved. The function signature is:
+    
+    def get_all_messages(registration_id)
+
+    It returns an array full of Bluevia::Schemas::SmsMessage objects
+    
+ Receiving MMS messages: Message notification
+    
+    Your application can create a subscription to receive SMS sent to your application. 
+    You can also unsubscribe the notification for this request.
+    
+    To receive notifications about SMS sent to your applications you must provide an 
+    endpoint whit the URI where notifications must be sent and the criteria word.
+       
+       info = @bc.start_notification(sms_special_number, endpoint, criteria, nil)
+       
+    Note that BlueVia only accepts HTTPS endpoints and the server certificate must be 
+    provided during the process of requesting the API key.
+
+    You must also provide the list with the destination addresses and shortcode numbers.
+
+    Then you can provide the criteria element containing the keyword you chose for your 
+    application when you requested the API key (keywords are case-insensitive)
+
+    Now, you must include your endpoint and correlator in send method and you will 
+    get notified in your endpoint for SMS sent
+    
+       info = @bc.send(destination, text, endpoint, correlator)
+
+    If you want to unsubscribe and stop reveiving notifications you should simply do:
+
+       @bc.stop_notification(info)
+ 
+ Bluevia SMS MO API: code example
+    
+    begin
+      
+      # 1. Create the client (you have to choose the mode and include the OAuth 
+      authorization values. No access token is needed)
+      @bc = BVMoSms.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]")
+
+      # 2. Retrieve sent SMSs:
+      list_sms = @bc.get_all_messages("546780")
+      
+      list_sms.each{|msg|
+		dest = msg.destination
+		text = msg.message
+		orig = msg.origin_address
+		}
+    rescue BlueviaError => e
+      cod = e.code
+      mess = e.message
+    end

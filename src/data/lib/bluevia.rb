@@ -4,10 +4,15 @@
 # contact us at mailto:support@bluevia.com
 #
 
-require 'bluevia/bluevia_client'
+%w[bv_advertising bv_directory bv_location bv_mo_sms bv_mo_mms bv_mt_sms bv_mt_mms bv_oauth bv_payment].each{|client|  require "bluevia/clients/#{client}"}
+
+%w[config].each{|file|  require "bluevia/#{file}"}
 
 
 # Main Bluevia module definition
 module Bluevia
-  VERSION = "1.0"
+
+  BASE_URI= "https://api.bluevia.com"
+  
+  VERSION = "1.6"
 end

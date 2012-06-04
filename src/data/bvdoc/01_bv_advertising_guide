@@ -1,0 +1,151 @@
+
+ Bluevia Advertising Client Guide
+
+ Introduction
+ 
+    Bluevia Advertising API is a set of functions which allows users to provide 
+    advertising based on different advertisement type such as images or texts or 
+    similar elements within their applications. This guide represents a practical 
+    introduction to developing applications in which the user wants to provide the 
+    Bluevia Advertising functionality.
+    
+ Advertising client basics
+    
+    An Advertising Client represents client side in a classic client-server schema. 
+    This object wraps up the underlying REST client side functionality needed to 
+    perform requests against a REST server.
+    Any Bluevia Client performs requests and receives responses in a secure mode. 
+    Clients are authorized following the OAuth protocol. This security protocol 
+    enables users to grant third-party access to their resources without sharing 
+    their passwords. So clients store the authorization data -called security 
+    credentials- to grant access to the server.
+     
+    The following sections describe what security credentials we are talking about. 
+
+ Creating an Advertising client: BVAdvertising class 
+ 
+    First step for using Advertising client is to create a BVAdvertising object. 
+    This object can have three different working modes: 
+    
+    - LIVE or BVMODE::LIVE Your application uses real network, which means that you 
+      will be able to send real transactions to real Movistar, O2 and Vivo customers 
+      in the applicable country.
+    - TEST or BVMODE::TEST Behave exactly likes Live mode, but API calls are free 
+      of chargue, using a credits system. You are required to have a Movistar, O2 
+      or Vivo mobile number to get this monthly credits.
+    - SANDBOX or BVMODE::SANDBOX Sandbox environment offers you the exact same 
+      experience as Live environment except that no traffic is generated on live network.
+ 
+ Advertising client features: security credentials
+
+    Bluevia uses OAuth as its authentication mechanism which enables websites and 
+    applications to access Bluevia API's without end users disclosing their personal 
+    credentials.
+    
+    In order to grant access to the server any client has to be created passing the 
+    security credential as parameter in its constructor. These security credentials 
+    are managed internally and added as a HTTP header in every request sent to the server.
+	 
+    Such Oauth security credentials are:
+	
+	- Consumer key: String identifying the application (obtained when you registered 
+	  your application within the provisioning portal.
+	- Consumer secret: A secret -a string- used by the consumer to establish ownership 
+	  of the consumer key.
+	- Access token: Token -a string- used by the client for granting access permissions 
+	  to the server.
+	- Access token secret: The secret of the access token.
+	
+ Advertising client features: Oauth 2-legged
+
+	Some applications will only use the Advertising API, which does not need to be 
+	given permissions by the final user. Bluevia supports Oauth authentication without 
+	oauth token, which is called 2-legged mode. In this case the client just need the 
+	Consumer key and Consumer secret credentials.
+
+ Advertising client features: code example
+
+    Find below an example on how to create an Oauth 3-legged Advertising client 
+    taking into account all the information previously given.
+	
+    # two-legged advertising client
+    @bc = BVAdvertising.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]")
+       
+    # three-legged advertising client
+    @bc = BVAdvertising.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]",
+    						"[TOKEN_KEY]","[TOKEN_SECRET]")
+
+ Retrieving an advertisement
+ 	
+	Bluevia Advertising API can provide two different kinds of advertisements: 
+	text and images. When retrieving a simple advertisement the user could to 
+	specify a set of request parameters such as keywords, protection policy, etc.
+	Once you have instantiated a BVAdvertising object, you can start using the 
+	getAdvertising methods. Depending on the authentication you are using (3-legged 
+	or 2-legged) you should use one of the two different versions of the function:
+
+	def get_advertising_3l	(ad_space, country = nil, ad_request_id = nil, 
+						ad_presentation = nil, keywords = nil, 
+						protection_policy = nil, user_agent = nil)
+
+	def get_advertising_2l	(ad_space, country, target_user_id = nil, 
+						ad_request_id = nil, ad_presentation = nil, 
+						keywords = nil, protection_policy = nil, 
+						user_agent = nil)
+
+	- ad_space: is the identifier you obtained when you registered 
+	  your application within the Bluevia portal and is mandatory. 
+	- country: indicates the country where the target user is located. 
+	  Must follow ISO-3166. (optional for 3 legged mandatory when 2 legged client). 
+	- target_user_id: is a string to identify target user. (optional, and only 
+	  available in 3-legged mode). 
+	- ad_request_id: an unique id for the request (optional: if it is not set, 
+	  SDK will generate it automatically).
+	- ad_presentation: parameter is optional. It specifies what type of 
+	  advertisement the user wants to retrieve.
+	- keywords: parameter provides the key words the advertisement is related to. 
+	  This parameter is optional too.
+	- protection_policy: allows an user to apply the desired the adult control 
+	  policy. In case you are not interested in setting a specific value for any 
+	  of the optional parameters, just set it to null.
+	- user_agent: parameter specifies the user agent of the client to show the 
+	  advertisement.
+
+ Retrieving an advertisement: processing the response
+
+	Bluevia::Schemas::SimpleAdResponse object contains, among other members, an 
+	ArrayList of CreativeElement's, which are the objects that represent the 
+	advertisement. Every Creative Element stores a string containing the representation 
+	of the advertisement (text or an URL of an image); and other string corresponding 
+	to the URL for a 'click2wap' interaction.
+
+ Bluevia Advertising API: code example
+
+    begin
+
+	  # 1. Create the client (you have to choose the mode and include the OAuth 
+	  # authorization values. No access token is needed)
+	  @bc = BVAdvertising.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]")
+
+	  # 2. Request an advertisement. We need at least the mandatory parameter ad_space 
+	  # (ie, 12921).
+	  response = @bc.get_advertising_2l("12921", "UK", nil, nil, 
+	  					Bluevia::Schemas::TypeId::IMAGE, 
+	  					nil, 
+	  					Bluevia::Schemas::ProtectionPolicy::HIGH, 
+	  					nil)
+
+	  # 3. Process the response
+	  unless response.nil?
+	    ad = response.advertising_list
+	    id = response.request_id
+	    image_url = ad.value
+	    interaction_url = ad.interaction
+	  end
+	  
+    rescue BlueviaError => e
+	  puts e.code
+	  puts e.message
+	  # as for example
+    end
+	

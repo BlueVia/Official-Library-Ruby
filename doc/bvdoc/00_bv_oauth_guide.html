@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>File: 00_bv_oauth_guide [RDoc Documentation]</title>
+
+  <link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
+
+  <script src="../js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
+
+<body class="file">
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="../Rakefile.html">Rakefile</a></li>
+        
+          <li class="file"><a href="../UserGuide.html">UserGuide</a></li>
+        
+          <li class="file"><a href="../bvdoc/00_bv_oauth_guide.html">00_bv_oauth_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/01_bv_advertising_guide.html">01_bv_advertising_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/02_bv_location_guide.html">02_bv_location_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/03_bv_directory_guide.html">03_bv_directory_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/04_bv_payment_guide.html">04_bv_payment_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/05_bv_sms_mt_guide.html">05_bv_sms_mt_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/06_bv_mms_mt_guide.html">06_bv_mms_mt_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/07_bv_sms_mo_guide.html">07_bv_sms_mo_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/08_bv_mms_mo_guide.html">08_bv_mms_mo_guide</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../Bluevia.html">Bluevia</a></li>
+        
+          <li><a href="../Bluevia/BVAdvertising.html">Bluevia::BVAdvertising</a></li>
+        
+          <li><a href="../Bluevia/BVAdvertisingClient.html">Bluevia::BVAdvertisingClient</a></li>
+        
+          <li><a href="../Bluevia/BVBaseClient.html">Bluevia::BVBaseClient</a></li>
+        
+          <li><a href="../Bluevia/BVDirectory.html">Bluevia::BVDirectory</a></li>
+        
+          <li><a href="../Bluevia/BVDirectoryClient.html">Bluevia::BVDirectoryClient</a></li>
+        
+          <li><a href="../Bluevia/BVLocation.html">Bluevia::BVLocation</a></li>
+        
+          <li><a href="../Bluevia/BVLocationClient.html">Bluevia::BVLocationClient</a></li>
+        
+          <li><a href="../Bluevia/BVMoClient.html">Bluevia::BVMoClient</a></li>
+        
+          <li><a href="../Bluevia/BVMoMms.html">Bluevia::BVMoMms</a></li>
+        
+          <li><a href="../Bluevia/BVMoMmsClient.html">Bluevia::BVMoMmsClient</a></li>
+        
+          <li><a href="../Bluevia/BVMoSms.html">Bluevia::BVMoSms</a></li>
+        
+          <li><a href="../Bluevia/BVMoSmsClient.html">Bluevia::BVMoSmsClient</a></li>
+        
+          <li><a href="../Bluevia/BVMode.html">Bluevia::BVMode</a></li>
+        
+          <li><a href="../Bluevia/BVMtClient.html">Bluevia::BVMtClient</a></li>
+        
+          <li><a href="../Bluevia/BVMtMms.html">Bluevia::BVMtMms</a></li>
+        
+          <li><a href="../Bluevia/BVMtMmsClient.html">Bluevia::BVMtMmsClient</a></li>
+        
+          <li><a href="../Bluevia/BVMtSms.html">Bluevia::BVMtSms</a></li>
+        
+          <li><a href="../Bluevia/BVMtSmsClient.html">Bluevia::BVMtSmsClient</a></li>
+        
+          <li><a href="../Bluevia/BVOauth.html">Bluevia::BVOauth</a></li>
+        
+          <li><a href="../Bluevia/BVOauthClient.html">Bluevia::BVOauthClient</a></li>
+        
+          <li><a href="../Bluevia/BVPayment.html">Bluevia::BVPayment</a></li>
+        
+          <li><a href="../Bluevia/BlueviaError.html">Bluevia::BlueviaError</a></li>
+        
+          <li><a href="../Bluevia/ConnectionError.html">Bluevia::ConnectionError</a></li>
+        
+          <li><a href="../Bluevia/Errors.html">Bluevia::Errors</a></li>
+        
+          <li><a href="../Bluevia/IConnector.html">Bluevia::IConnector</a></li>
+        
+          <li><a href="../Bluevia/IConnector/BVHttpOAuthConnector.html">Bluevia::IConnector::BVHttpOAuthConnector</a></li>
+        
+          <li><a href="../Bluevia/IParser.html">Bluevia::IParser</a></li>
+        
+          <li><a href="../Bluevia/IParser/JsonParser.html">Bluevia::IParser::JsonParser</a></li>
+        
+          <li><a href="../Bluevia/IParser/JsonRpcParser.html">Bluevia::IParser::JsonRpcParser</a></li>
+        
+          <li><a href="../Bluevia/IParser/MultipartParser.html">Bluevia::IParser::MultipartParser</a></li>
+        
+          <li><a href="../Bluevia/IParser/XmlParser.html">Bluevia::IParser::XmlParser</a></li>
+        
+          <li><a href="../Bluevia/ISerializer.html">Bluevia::ISerializer</a></li>
+        
+          <li><a href="../Bluevia/ISerializer/JsonRpcSerializer.html">Bluevia::ISerializer::JsonRpcSerializer</a></li>
+        
+          <li><a href="../Bluevia/ISerializer/JsonSerializer.html">Bluevia::ISerializer::JsonSerializer</a></li>
+        
+          <li><a href="../Bluevia/ISerializer/MultipartSerializer.html">Bluevia::ISerializer::MultipartSerializer</a></li>
+        
+          <li><a href="../Bluevia/ISerializer/UrlEncodedSerializer.html">Bluevia::ISerializer::UrlEncodedSerializer</a></li>
+        
+          <li><a href="../Bluevia/Schemas.html">Bluevia::Schemas</a></li>
+        
+          <li><a href="../Bluevia/Schemas/AccessFields.html">Bluevia::Schemas::AccessFields</a></li>
+        
+          <li><a href="../Bluevia/Schemas/AccessInfo.html">Bluevia::Schemas::AccessInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/Attachment.html">Bluevia::Schemas::Attachment</a></li>
+        
+          <li><a href="../Bluevia/Schemas/AttachmentInfo.html">Bluevia::Schemas::AttachmentInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/BVResponse.html">Bluevia::Schemas::BVResponse</a></li>
+        
+          <li><a href="../Bluevia/Schemas/CreativeElement.html">Bluevia::Schemas::CreativeElement</a></li>
+        
+          <li><a href="../Bluevia/Schemas/DeliveryInfo.html">Bluevia::Schemas::DeliveryInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/DirectoryDataSets.html">Bluevia::Schemas::DirectoryDataSets</a></li>
+        
+          <li><a href="../Bluevia/Schemas/LocationInfo.html">Bluevia::Schemas::LocationInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/MimeContent.html">Bluevia::Schemas::MimeContent</a></li>
+        
+          <li><a href="../Bluevia/Schemas/MmsMessage.html">Bluevia::Schemas::MmsMessage</a></li>
+        
+          <li><a href="../Bluevia/Schemas/MmsMessageInfo.html">Bluevia::Schemas::MmsMessageInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/PaymentResult.html">Bluevia::Schemas::PaymentResult</a></li>
+        
+          <li><a href="../Bluevia/Schemas/PaymentStatus.html">Bluevia::Schemas::PaymentStatus</a></li>
+        
+          <li><a href="../Bluevia/Schemas/PersonalFields.html">Bluevia::Schemas::PersonalFields</a></li>
+        
+          <li><a href="../Bluevia/Schemas/PersonalInfo.html">Bluevia::Schemas::PersonalInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/Profile.html">Bluevia::Schemas::Profile</a></li>
+        
+          <li><a href="../Bluevia/Schemas/ProfileFields.html">Bluevia::Schemas::ProfileFields</a></li>
+        
+          <li><a href="../Bluevia/Schemas/ProtectionPolicy.html">Bluevia::Schemas::ProtectionPolicy</a></li>
+        
+          <li><a href="../Bluevia/Schemas/RequestToken.html">Bluevia::Schemas::RequestToken</a></li>
+        
+          <li><a href="../Bluevia/Schemas/SimpleAdResponse.html">Bluevia::Schemas::SimpleAdResponse</a></li>
+        
+          <li><a href="../Bluevia/Schemas/SmsMessage.html">Bluevia::Schemas::SmsMessage</a></li>
+        
+          <li><a href="../Bluevia/Schemas/TerminalFields.html">Bluevia::Schemas::TerminalFields</a></li>
+        
+          <li><a href="../Bluevia/Schemas/TerminalInfo.html">Bluevia::Schemas::TerminalInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/TypeId.html">Bluevia::Schemas::TypeId</a></li>
+        
+          <li><a href="../Bluevia/Schemas/UserIdType.html">Bluevia::Schemas::UserIdType</a></li>
+        
+          <li><a href="../Bluevia/Schemas/UserInfo.html">Bluevia::Schemas::UserInfo</a></li>
+        
+          <li><a href="../Bluevia/Utils.html">Bluevia::Utils</a></li>
+        
+          <li><a href="../OAuth.html">OAuth</a></li>
+        
+          <li><a href="../OAuth/Client.html">OAuth::Client</a></li>
+        
+          <li><a href="../OAuth/Client/Helper.html">OAuth::Client::Helper</a></li>
+        
+          <li><a href="../Rack.html">Rack</a></li>
+        
+          <li><a href="../Rack/Multipart.html">Rack::Multipart</a></li>
+        
+          <li><a href="../Rack/Multipart/Parser.html">Rack::Multipart::Parser</a></li>
+        
+          <li><a href="../BlueviaLogger.html">BlueviaLogger</a></li>
+        
+          <li><a href="../DemoAdvertising.html">DemoAdvertising</a></li>
+        
+          <li><a href="../DemoDirectory.html">DemoDirectory</a></li>
+        
+          <li><a href="../DemoLocation.html">DemoLocation</a></li>
+        
+          <li><a href="../DemoMmsMo.html">DemoMmsMo</a></li>
+        
+          <li><a href="../DemoMmsMt.html">DemoMmsMt</a></li>
+        
+          <li><a href="../DemoOauth.html">DemoOauth</a></li>
+        
+          <li><a href="../DemoPayment.html">DemoPayment</a></li>
+        
+          <li><a href="../DemoSmsMo.html">DemoSmsMo</a></li>
+        
+          <li><a href="../DemoSmsMt.html">DemoSmsMt</a></li>
+        
+          <li><a href="../Hash.html">Hash</a></li>
+        
+          <li><a href="../Object.html">Object</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    
+<p><a href="../Bluevia.html">Bluevia</a> Oauth Client Guide</p>
+
+<p>Introduction</p>
+
+<pre>Bluevia OAuth API is a set of functions which allows applications to retrieve 
+request and access tokens to complete the OAuth authentication protocol, 
+necessary to be able to get and send data to Bluevia APIs. This guide represents 
+a practical introduction to include the OAuth protocol in Bluevia applications.</pre>
+
+<p><a href="../OAuth.html">OAuth</a> definitions:</p>
+
+<pre>Consumer credentials are unique for each application registered in Bluevia 
+portal, and can be obtained by requesting an API key. 
+
+- User: Customer of Telefonica who has an account with Bluevia and can, therefore, 
+  use the underlying services via a Bluevia API.
+- Consumer: An application that uses OAuth to access Bluevia APIs on behalf of 
+  the User.
+- Consumer Key: A value used by the Consumer to identify itself in Bluevia.
+- Consumer Secret: Secret code used by the Consumer to guarantee the ownership
+  of the consumer key.
+- Request Token: A value used by the Consumer to obtain authorization from the User. 
+  Request Token is exchanged for an Access Token when permission is granted.
+- Access Token: A value used by the Consumer to call Bluevia APIs on behalf of the 
+  User (instead of using User’s credentials)
+
+Visit the API authentication reference for more information.</pre>
+
+<p>Oauth Client Basics:</p>
+
+<pre>An OAuth client represents the client side in a classic client-server schema. 
+This object wraps up the underlying REST client side functionality needed to 
+perform requests against a REST server.</pre>
+
+<p>Creating an <a href="../OAuth.html">OAuth</a> client: BVOauth class</p>
+
+<pre>First step for using OAuth client is to create a BVOauth object. This object 
+can have three different working modes: 
+
+- LIVE or BVMODE::LIVE Your application uses real network, which means that 
+  you will be able to send real transactions to real Movistar, O2 and Vivo 
+  customers in the applicable country.
+- TEST or BVMODE::TEST Behave exactly likes Live mode, but API calls are free 
+  of chargue, using a credits system. You are required to have a Movistar, O2 
+  or Vivo mobile number to get this monthly credits.
+- SANDBOX or BVMODE::SANDBOX Sandbox environment offers you the exact same
+  experience as Live environment except that no traffic is generated on
+  live network.
+
+Find below an example on how to create an BVOauth Client taking into account 
+all information previously given.
+
+# two-legged oauth client
+@bc = BVOauth.new(BVMode::LIVE, &quot;[CONSUMER_KEY]&quot;,&quot;[CONSUMER_SECRET]&quot;)</pre>
+
+<p><a href="../OAuth.html">OAuth</a> process</p>
+
+<pre>OAuth process consist of three steps:
+
+- Retrieve a request token (user needs to authorize app)
+- Exchange the request token for an access token.
+
+Consumer credentials and the resulting Access Token will be supplied to the 
+different clients to allow them to connect to Bluevia APIs. OAuth client 
+contains necessary functions to complete these operations:
+
+Step 1: retrieving a request token
+
+   Once you have instantiated a BVOauth object, you have to retrieve a request 
+   token to be authorised by the user. 'callback' is an important parameter 
+   and according to it, authorization progress shall be done in one of the three 
+   ways explained below.
+
+   - WebOauth authorization:
+
+     Callback parameter is a defined callback URL. You will receive the 
+     oauth_verifier as a request parameter at your callback.
+
+     request_token = @service.get_request_token(&quot;http://foo.bar/bluevia/get_access&quot;) 
+
+   - OutOfBand authorization:
+
+     In this case, callback parameter is not defined. User must go to Bluevia 
+     Portal to authorise application.
+
+     request_token = @service.get_request_token
+
+     A new Schemas module is provided with objects to ease data management. 
+     'request_token' will be a Bluevia::Schemas:RequestToken object containing 
+     token, secret and auth_url attributes that can be retrieved doing as follows:
+
+        request_token.token
+        request_token.secret
+        request_token.auth_url 
+
+     'auth_url' allows to access Bluevia portal. Depending on the mode used, 
+     it will be available for final users (LIVE) or developers (TEST and SANDBOX). 
+     Application should enable user (customer) to visit url in any way, where he 
+     will have to introduce its credentials (user and password) to authorise 
+     application to connect Bluevia APIs on his behalf. Once permission has been 
+     granted, user will obtain a PIN code necessary to exchange the request token 
+     for the access token.
+
+   - SMSOauth authorization:
+
+     Oauth authorization can also be done through mobile handshake by using 
+     &quot;get_request_token_smsHandshake&quot; method providing phone_number parameter, 
+     that must be a string with an msisdn:
+
+        @request_token = @service.get_request_token_smsHandshake(&quot;34567890&quot;)
+
+     In this case @request_token is an OAuth::Token object that contains only token 
+     and secret values.
+
+     This way of authorization is called smsHandshake and is only available for LIVE mode.
+
+Step 2: retrieveing an access token
+
+   The 'get_access_token' function works as follows:
+
+      @access_token = @service.get_access_token(pin_code, request_token.token, 
+                                            request_token.secret)
+
+   'request_token' parameter refer to the request token previously retrieved. 
+   'pin_code' parameter corresponds to the PIN code obtained by the user in the 
+   Bluevia portal. 'pin_code' is mandatory. If token and secret are not specified, 
+   last requested token stored in the client will be used.
+
+   Each application only has to go through the OAuth process one for each user 
+   (customer) and resulting access token is valid for any subsequent call to the 
+   Bluevia APIs. Because of this access token is required to be stored persistently 
+   in any way.</pre>
+
+<p><a href="../Bluevia.html">Bluevia</a> Oauth API: Code example for rails
+users</p>
+
+<pre>In case of a Rails application, the lines below could be used:
+
+   @bc = BVOauth.new(BVMode::LIVE, &quot;[CONSUMER_KEY]&quot;,&quot;[CONSUMER_SECRET]&quot;)
+
+   @request_token = @bc.get_request_token(&quot;http://foo.bar/bluevia/get_access&quot;)
+   cookies[:token] = &quot;#{@request_token.token}|#{@request_token.secret}&quot;
+   redirect_to(@request_token.auth_url)
+
+   # Both tokend and secret must be saved by the application provider because 
+   # oAuth process will require it later. Once user is authenticated and has
+   # authorized the application in BlueVia portal, user should be redirected
+   # to the URL used as parameter before.
+   # Now it's time to fetch the valid token and secret that shall identify
+   # the new user during any call to BlueVia API. Lines below show an example
+   # using Rails:
+
+   def get_access
+     oauth_verifier = params[:oauth_verifier]
+     get_token_from_cookie
+     @access_token = @bc.get_access_token(oauth_verifier, @request_token, 
+                                          @request_secret)
+   end
+
+   private
+     def get_token_from_cookie
+       cookie_token = cookies[:token]
+       unless cookie_token.nil?
+         cookie_token = cookie_token.split(&quot;|&quot;)
+         if cookie_token.size != 2
+           raise SyntaxError, &quot;The cookie is not valid&quot;
+         end
+         @request_token = cookie_token[0]
+         @request_secret = cookie_token[1]
+       end
+     end</pre>
+
+  </div>
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+</body>
+</html>
+

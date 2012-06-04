@@ -1,0 +1,173 @@
+
+ Bluevia Oauth Client Guide
+
+ Introduction
+    
+    Bluevia OAuth API is a set of functions which allows applications to retrieve 
+    request and access tokens to complete the OAuth authentication protocol, 
+    necessary to be able to get and send data to Bluevia APIs. This guide represents 
+    a practical introduction to include the OAuth protocol in Bluevia applications.
+	
+	
+ OAuth definitions:
+
+    Consumer credentials are unique for each application registered in Bluevia 
+    portal, and can be obtained by requesting an API key. 
+    
+    - User: Customer of Telefonica who has an account with Bluevia and can, therefore, 
+      use the underlying services via a Bluevia API.
+    - Consumer: An application that uses OAuth to access Bluevia APIs on behalf of 
+      the User.
+    - Consumer Key: A value used by the Consumer to identify itself in Bluevia.
+    - Consumer Secret: Secret code used by the Consumer to guarantee the ownership
+      of the consumer key.
+    - Request Token: A value used by the Consumer to obtain authorization from the User. 
+      Request Token is exchanged for an Access Token when permission is granted.
+    - Access Token: A value used by the Consumer to call Bluevia APIs on behalf of the 
+      User (instead of using User’s credentials)
+	
+    Visit the API authentication reference for more information.
+	
+ Oauth Client Basics:
+	
+	An OAuth client represents the client side in a classic client-server schema. 
+	This object wraps up the underlying REST client side functionality needed to 
+	perform requests against a REST server. 
+	
+ Creating an OAuth client: BVOauth class
+ 
+    First step for using OAuth client is to create a BVOauth object. This object 
+    can have three different working modes: 
+    
+    - LIVE or BVMODE::LIVE Your application uses real network, which means that 
+      you will be able to send real transactions to real Movistar, O2 and Vivo 
+      customers in the applicable country.
+    - TEST or BVMODE::TEST Behave exactly likes Live mode, but API calls are free 
+      of chargue, using a credits system. You are required to have a Movistar, O2 
+      or Vivo mobile number to get this monthly credits.
+    - SANDBOX or BVMODE::SANDBOX Sandbox environment offers you the exact same
+      experience as Live environment except that no traffic is generated on
+      live network.
+
+    Find below an example on how to create an BVOauth Client taking into account 
+    all information previously given.
+
+    # two-legged oauth client
+    @bc = BVOauth.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]")
+    
+ OAuth process
+
+	OAuth process consist of three steps:
+ 	
+ 	- Retrieve a request token (user needs to authorize app)
+ 	- Exchange the request token for an access token.
+
+	Consumer credentials and the resulting Access Token will be supplied to the 
+	different clients to allow them to connect to Bluevia APIs. OAuth client 
+	contains necessary functions to complete these operations:
+	
+	Step 1: retrieving a request token
+
+	   Once you have instantiated a BVOauth object, you have to retrieve a request 
+	   token to be authorised by the user. 'callback' is an important parameter 
+	   and according to it, authorization progress shall be done in one of the three 
+	   ways explained below.
+
+	   - WebOauth authorization:
+	     
+	     Callback parameter is a defined callback URL. You will receive the 
+	     oauth_verifier as a request parameter at your callback.
+	     
+	     request_token = @service.get_request_token("http://foo.bar/bluevia/get_access") 
+	     
+	   - OutOfBand authorization:
+	     
+	     In this case, callback parameter is not defined. User must go to Bluevia 
+	     Portal to authorise application.
+		 
+	     request_token = @service.get_request_token
+		 
+	     A new Schemas module is provided with objects to ease data management. 
+	     'request_token' will be a Bluevia::Schemas:RequestToken object containing 
+	     token, secret and auth_url attributes that can be retrieved doing as follows:
+		 
+	        request_token.token
+         	request_token.secret
+         	request_token.auth_url 
+	     
+	     'auth_url' allows to access Bluevia portal. Depending on the mode used, 
+	     it will be available for final users (LIVE) or developers (TEST and SANDBOX). 
+	     Application should enable user (customer) to visit url in any way, where he 
+	     will have to introduce its credentials (user and password) to authorise 
+	     application to connect Bluevia APIs on his behalf. Once permission has been 
+	     granted, user will obtain a PIN code necessary to exchange the request token 
+	     for the access token.
+		
+	   - SMSOauth authorization:
+	     
+	     Oauth authorization can also be done through mobile handshake by using 
+	     "get_request_token_smsHandshake" method providing phone_number parameter, 
+	     that must be a string with an msisdn:
+    	
+	     	@request_token = @service.get_request_token_smsHandshake("34567890")
+    	
+	     In this case @request_token is an OAuth::Token object that contains only token 
+	     and secret values.
+    	
+	     This way of authorization is called smsHandshake and is only available for LIVE mode.
+	
+	Step 2: retrieveing an access token
+       
+	   The 'get_access_token' function works as follows:
+	      
+	      @access_token = @service.get_access_token(pin_code, request_token.token, 
+                                                    request_token.secret)
+	   
+	   'request_token' parameter refer to the request token previously retrieved. 
+	   'pin_code' parameter corresponds to the PIN code obtained by the user in the 
+	   Bluevia portal. 'pin_code' is mandatory. If token and secret are not specified, 
+	   last requested token stored in the client will be used.
+
+	   Each application only has to go through the OAuth process one for each user 
+	   (customer) and resulting access token is valid for any subsequent call to the 
+	   Bluevia APIs. Because of this access token is required to be stored persistently 
+	   in any way. 
+	   
+ Bluevia Oauth API: Code example for rails users
+ 
+    In case of a Rails application, the lines below could be used:
+ 	  
+       @bc = BVOauth.new(BVMode::LIVE, "[CONSUMER_KEY]","[CONSUMER_SECRET]")
+       
+       @request_token = @bc.get_request_token("http://foo.bar/bluevia/get_access")
+       cookies[:token] = "#{@request_token.token}|#{@request_token.secret}"
+       redirect_to(@request_token.auth_url)
+        
+       # Both tokend and secret must be saved by the application provider because 
+       # oAuth process will require it later. Once user is authenticated and has
+       # authorized the application in BlueVia portal, user should be redirected
+       # to the URL used as parameter before.
+       # Now it's time to fetch the valid token and secret that shall identify
+       # the new user during any call to BlueVia API. Lines below show an example
+       # using Rails:
+ 
+       def get_access
+         oauth_verifier = params[:oauth_verifier]
+         get_token_from_cookie
+         @access_token = @bc.get_access_token(oauth_verifier, @request_token, 
+                                              @request_secret)
+       end
+
+       private
+         def get_token_from_cookie
+           cookie_token = cookies[:token]
+           unless cookie_token.nil?
+             cookie_token = cookie_token.split("|")
+             if cookie_token.size != 2
+               raise SyntaxError, "The cookie is not valid"
+             end
+             @request_token = cookie_token[0]
+             @request_secret = cookie_token[1]
+           end
+         end
+	    

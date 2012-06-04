@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: Bluevia::BVPayment</title>
+
+  <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="../lib/bluevia/clients/bv_payment_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/bluevia/clients/bv_payment.rb">lib/bluevia/clients/bv_payment.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link"><a href="BVOauthClient.html">Bluevia::BVOauthClient</a></p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-i-cancel_authorization">#cancel_authorization</a></li>
+          
+          <li><a href="#method-i-get_payment_access_token">#get_payment_access_token</a></li>
+          
+          <li><a href="#method-i-get_payment_request_token">#get_payment_request_token</a></li>
+          
+          <li><a href="#method-i-get_payment_status">#get_payment_status</a></li>
+          
+          <li><a href="#method-i-payment">#payment</a></li>
+          
+          <li><a href="#method-i-set_token">#set_token</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="../Rakefile.html">Rakefile</a></li>
+        
+          <li class="file"><a href="../UserGuide.html">UserGuide</a></li>
+        
+          <li class="file"><a href="../bvdoc/00_bv_oauth_guide.html">00_bv_oauth_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/01_bv_advertising_guide.html">01_bv_advertising_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/02_bv_location_guide.html">02_bv_location_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/03_bv_directory_guide.html">03_bv_directory_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/04_bv_payment_guide.html">04_bv_payment_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/05_bv_sms_mt_guide.html">05_bv_sms_mt_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/06_bv_mms_mt_guide.html">06_bv_mms_mt_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/07_bv_sms_mo_guide.html">07_bv_sms_mo_guide</a></li>
+        
+          <li class="file"><a href="../bvdoc/08_bv_mms_mo_guide.html">08_bv_mms_mo_guide</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../Bluevia.html">Bluevia</a></li>
+        
+          <li><a href="../Bluevia/BVAdvertising.html">Bluevia::BVAdvertising</a></li>
+        
+          <li><a href="../Bluevia/BVAdvertisingClient.html">Bluevia::BVAdvertisingClient</a></li>
+        
+          <li><a href="../Bluevia/BVBaseClient.html">Bluevia::BVBaseClient</a></li>
+        
+          <li><a href="../Bluevia/BVDirectory.html">Bluevia::BVDirectory</a></li>
+        
+          <li><a href="../Bluevia/BVDirectoryClient.html">Bluevia::BVDirectoryClient</a></li>
+        
+          <li><a href="../Bluevia/BVLocation.html">Bluevia::BVLocation</a></li>
+        
+          <li><a href="../Bluevia/BVLocationClient.html">Bluevia::BVLocationClient</a></li>
+        
+          <li><a href="../Bluevia/BVMoClient.html">Bluevia::BVMoClient</a></li>
+        
+          <li><a href="../Bluevia/BVMoMms.html">Bluevia::BVMoMms</a></li>
+        
+          <li><a href="../Bluevia/BVMoMmsClient.html">Bluevia::BVMoMmsClient</a></li>
+        
+          <li><a href="../Bluevia/BVMoSms.html">Bluevia::BVMoSms</a></li>
+        
+          <li><a href="../Bluevia/BVMoSmsClient.html">Bluevia::BVMoSmsClient</a></li>
+        
+          <li><a href="../Bluevia/BVMode.html">Bluevia::BVMode</a></li>
+        
+          <li><a href="../Bluevia/BVMtClient.html">Bluevia::BVMtClient</a></li>
+        
+          <li><a href="../Bluevia/BVMtMms.html">Bluevia::BVMtMms</a></li>
+        
+          <li><a href="../Bluevia/BVMtMmsClient.html">Bluevia::BVMtMmsClient</a></li>
+        
+          <li><a href="../Bluevia/BVMtSms.html">Bluevia::BVMtSms</a></li>
+        
+          <li><a href="../Bluevia/BVMtSmsClient.html">Bluevia::BVMtSmsClient</a></li>
+        
+          <li><a href="../Bluevia/BVOauth.html">Bluevia::BVOauth</a></li>
+        
+          <li><a href="../Bluevia/BVOauthClient.html">Bluevia::BVOauthClient</a></li>
+        
+          <li><a href="../Bluevia/BVPayment.html">Bluevia::BVPayment</a></li>
+        
+          <li><a href="../Bluevia/BlueviaError.html">Bluevia::BlueviaError</a></li>
+        
+          <li><a href="../Bluevia/ConnectionError.html">Bluevia::ConnectionError</a></li>
+        
+          <li><a href="../Bluevia/Errors.html">Bluevia::Errors</a></li>
+        
+          <li><a href="../Bluevia/IConnector.html">Bluevia::IConnector</a></li>
+        
+          <li><a href="../Bluevia/IConnector/BVHttpOAuthConnector.html">Bluevia::IConnector::BVHttpOAuthConnector</a></li>
+        
+          <li><a href="../Bluevia/IParser.html">Bluevia::IParser</a></li>
+        
+          <li><a href="../Bluevia/IParser/JsonParser.html">Bluevia::IParser::JsonParser</a></li>
+        
+          <li><a href="../Bluevia/IParser/JsonRpcParser.html">Bluevia::IParser::JsonRpcParser</a></li>
+        
+          <li><a href="../Bluevia/IParser/MultipartParser.html">Bluevia::IParser::MultipartParser</a></li>
+        
+          <li><a href="../Bluevia/IParser/XmlParser.html">Bluevia::IParser::XmlParser</a></li>
+        
+          <li><a href="../Bluevia/ISerializer.html">Bluevia::ISerializer</a></li>
+        
+          <li><a href="../Bluevia/ISerializer/JsonRpcSerializer.html">Bluevia::ISerializer::JsonRpcSerializer</a></li>
+        
+          <li><a href="../Bluevia/ISerializer/JsonSerializer.html">Bluevia::ISerializer::JsonSerializer</a></li>
+        
+          <li><a href="../Bluevia/ISerializer/MultipartSerializer.html">Bluevia::ISerializer::MultipartSerializer</a></li>
+        
+          <li><a href="../Bluevia/ISerializer/UrlEncodedSerializer.html">Bluevia::ISerializer::UrlEncodedSerializer</a></li>
+        
+          <li><a href="../Bluevia/Schemas.html">Bluevia::Schemas</a></li>
+        
+          <li><a href="../Bluevia/Schemas/AccessFields.html">Bluevia::Schemas::AccessFields</a></li>
+        
+          <li><a href="../Bluevia/Schemas/AccessInfo.html">Bluevia::Schemas::AccessInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/Attachment.html">Bluevia::Schemas::Attachment</a></li>
+        
+          <li><a href="../Bluevia/Schemas/AttachmentInfo.html">Bluevia::Schemas::AttachmentInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/BVResponse.html">Bluevia::Schemas::BVResponse</a></li>
+        
+          <li><a href="../Bluevia/Schemas/CreativeElement.html">Bluevia::Schemas::CreativeElement</a></li>
+        
+          <li><a href="../Bluevia/Schemas/DeliveryInfo.html">Bluevia::Schemas::DeliveryInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/DirectoryDataSets.html">Bluevia::Schemas::DirectoryDataSets</a></li>
+        
+          <li><a href="../Bluevia/Schemas/LocationInfo.html">Bluevia::Schemas::LocationInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/MimeContent.html">Bluevia::Schemas::MimeContent</a></li>
+        
+          <li><a href="../Bluevia/Schemas/MmsMessage.html">Bluevia::Schemas::MmsMessage</a></li>
+        
+          <li><a href="../Bluevia/Schemas/MmsMessageInfo.html">Bluevia::Schemas::MmsMessageInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/PaymentResult.html">Bluevia::Schemas::PaymentResult</a></li>
+        
+          <li><a href="../Bluevia/Schemas/PaymentStatus.html">Bluevia::Schemas::PaymentStatus</a></li>
+        
+          <li><a href="../Bluevia/Schemas/PersonalFields.html">Bluevia::Schemas::PersonalFields</a></li>
+        
+          <li><a href="../Bluevia/Schemas/PersonalInfo.html">Bluevia::Schemas::PersonalInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/Profile.html">Bluevia::Schemas::Profile</a></li>
+        
+          <li><a href="../Bluevia/Schemas/ProfileFields.html">Bluevia::Schemas::ProfileFields</a></li>
+        
+          <li><a href="../Bluevia/Schemas/ProtectionPolicy.html">Bluevia::Schemas::ProtectionPolicy</a></li>
+        
+          <li><a href="../Bluevia/Schemas/RequestToken.html">Bluevia::Schemas::RequestToken</a></li>
+        
+          <li><a href="../Bluevia/Schemas/SimpleAdResponse.html">Bluevia::Schemas::SimpleAdResponse</a></li>
+        
+          <li><a href="../Bluevia/Schemas/SmsMessage.html">Bluevia::Schemas::SmsMessage</a></li>
+        
+          <li><a href="../Bluevia/Schemas/TerminalFields.html">Bluevia::Schemas::TerminalFields</a></li>
+        
+          <li><a href="../Bluevia/Schemas/TerminalInfo.html">Bluevia::Schemas::TerminalInfo</a></li>
+        
+          <li><a href="../Bluevia/Schemas/TypeId.html">Bluevia::Schemas::TypeId</a></li>
+        
+          <li><a href="../Bluevia/Schemas/UserIdType.html">Bluevia::Schemas::UserIdType</a></li>
+        
+          <li><a href="../Bluevia/Schemas/UserInfo.html">Bluevia::Schemas::UserInfo</a></li>
+        
+          <li><a href="../Bluevia/Utils.html">Bluevia::Utils</a></li>
+        
+          <li><a href="../OAuth.html">OAuth</a></li>
+        
+          <li><a href="../OAuth/Client.html">OAuth::Client</a></li>
+        
+          <li><a href="../OAuth/Client/Helper.html">OAuth::Client::Helper</a></li>
+        
+          <li><a href="../Rack.html">Rack</a></li>
+        
+          <li><a href="../Rack/Multipart.html">Rack::Multipart</a></li>
+        
+          <li><a href="../Rack/Multipart/Parser.html">Rack::Multipart::Parser</a></li>
+        
+          <li><a href="../BlueviaLogger.html">BlueviaLogger</a></li>
+        
+          <li><a href="../DemoAdvertising.html">DemoAdvertising</a></li>
+        
+          <li><a href="../DemoDirectory.html">DemoDirectory</a></li>
+        
+          <li><a href="../DemoLocation.html">DemoLocation</a></li>
+        
+          <li><a href="../DemoMmsMo.html">DemoMmsMo</a></li>
+        
+          <li><a href="../DemoMmsMt.html">DemoMmsMt</a></li>
+        
+          <li><a href="../DemoOauth.html">DemoOauth</a></li>
+        
+          <li><a href="../DemoPayment.html">DemoPayment</a></li>
+        
+          <li><a href="../DemoSmsMo.html">DemoSmsMo</a></li>
+        
+          <li><a href="../DemoSmsMt.html">DemoSmsMt</a></li>
+        
+          <li><a href="../Hash.html">Hash</a></li>
+        
+          <li><a href="../Object.html">Object</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">Bluevia::BVPayment</h1>
+
+    <div id="description" class="description">
+      
+<p><a href="../Bluevia.html">Bluevia</a> Payment API is a set of functions
+that enables individual, atomic payments based on input economic
+information.</p>
+
+    </div><!-- description -->
+
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(mode, consumer_key, consumer_secret)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>This class provides access to the set of functions which any user could use
+to access the Payment service functionality Note that this feature is only
+available for SANDBOX and LIVE modes.</p>
+
+<p>required params :</p>
+<dl class="rdoc-list"><dt><b>mode</b></dt>
+<dd>
+<p>Communication mechanism to communicate with the gSDP BVMode::LIVE (also
+SANDBOX and TEST available)</p>
+</dd><dt><b>consumer_key</b></dt>
+<dd>
+<p>Oauth consumer key supplied by the developer.</p>
+</dd><dt><b>consumer_secret</b></dt>
+<dd>
+<p>Oauth consumer secret supplied by the developer.</p>
+</dd></dl>
+
+<p>example:</p>
+
+<pre>@bc = BVPayment.new(Bluevia::BVMode::LIVE, &quot;XXXXX&quot;, &quot;YYYYY&quot;)</pre>
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/clients/bv_payment.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">mode</span>, <span class="ruby-identifier">consumer_key</span>, <span class="ruby-identifier">consumer_secret</span>)
+  
+  <span class="ruby-identifier">init_untrusted</span>(<span class="ruby-identifier">mode</span>, <span class="ruby-identifier">consumer_key</span>, <span class="ruby-identifier">consumer_secret</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>)
+  
+  <span class="ruby-comment"># Setting RPC parser and serializer</span>
+  <span class="ruby-ivar">@Is</span> = <span class="ruby-constant">Bluevia</span><span class="ruby-operator">::</span><span class="ruby-constant">ISerializer</span><span class="ruby-operator">::</span><span class="ruby-constant">JsonRpcSerializer</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@Ip</span> = <span class="ruby-constant">Bluevia</span><span class="ruby-operator">::</span><span class="ruby-constant">IParser</span><span class="ruby-operator">::</span><span class="ruby-constant">JsonRpcParser</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@Ie</span> = <span class="ruby-constant">Bluevia</span><span class="ruby-operator">::</span><span class="ruby-constant">IParser</span><span class="ruby-operator">::</span><span class="ruby-constant">XmlParser</span>.<span class="ruby-identifier">new</span>
+  
+  <span class="ruby-comment"># To complete RPC part of the URL</span>
+  <span class="ruby-identifier">is_rpc</span>
+  
+  <span class="ruby-comment"># No TEST mode allowed</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">mode</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-constant">TEST</span>
+    <span class="ruby-identifier">e</span> = <span class="ruby-constant">BVResponse</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">code</span> = <span class="ruby-constant">BVEXCEPTS</span>[<span class="ruby-constant">ERR_INV</span>]
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> = <span class="ruby-constant">ERR_INV</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BlueviaError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">mode</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-constant">SANDBOX</span>
+    <span class="ruby-comment"># To complete mode part of the URL</span>
+    <span class="ruby-identifier">is_sandbox</span>(<span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span> <span class="ruby-constant">BP_PAY</span>)
+    <span class="ruby-ivar">@b_pay_path</span> = <span class="ruby-constant">BP_PAY</span> <span class="ruby-operator">+</span> <span class="ruby-constant">BASEPATH_SANDBOX</span> 
+    
+  <span class="ruby-keyword">else</span> 
+    <span class="ruby-ivar">@base_uri</span> = <span class="ruby-ivar">@base_uri</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span> <span class="ruby-constant">BP_PAY</span>
+    <span class="ruby-ivar">@b_pay_path</span> = <span class="ruby-constant">BP_PAY</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="cancel_authorization-method" class="method-detail ">
+          <a name="method-i-cancel_authorization"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">cancel_authorization</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Merchant can use this operation instead of payment,  to cancel a previously
+authorized purchase.</p>
+            
+
+            
+            <div class="method-source-code" id="cancel_authorization-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/clients/bv_payment.rb, line 282</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_authorization</span>()
+  
+  <span class="ruby-identifier">method</span> = <span class="ruby-string">'CANCEL_AUTHORIZATION'</span>
+  <span class="ruby-identifier">header_method</span> = <span class="ruby-string">'cancelAuthorization'</span>
+  <span class="ruby-identifier">params</span> = {<span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">method</span>}
+  <span class="ruby-identifier">response</span> = <span class="ruby-identifier">base_create</span>(<span class="ruby-string">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">header_method</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">params</span>, <span class="ruby-keyword">nil</span>)
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">nil?</span> 
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- cancel_authorization-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- cancel_authorization-method -->
+
+      
+        <div id="get_payment_access_token-method" class="method-detail ">
+          <a name="method-i-get_payment_access_token"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_payment_access_token</span><span
+              class="method-args">(oauth_verifier, request_token=nil, request_secret=nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Gets access token and token secret that has to be used in the rest of oAuth
+headers of the payment api calls</p>
+
+<p>required params :</p>
+<dl class="rdoc-list"><dt><b>oauth_verifier</b></dt>
+<dd>
+<p><a href="../OAuth.html">OAuth</a> verifier for the token (pin code)</p>
+</dd></dl>
+
+<p>optional params :</p>
+<dl class="rdoc-list"><dt><b>request_token</b></dt>
+<dd>
+<p>If not provided SDK will use last request token received</p>
+</dd><dt><b>request_secret</b></dt>
+<dd>
+<p>If not provided SDK will use last request secret received</p>
+</dd></dl>
+
+<p>returns an access token in an OAuth::Token object raise <a
+href="BlueviaError.html">BlueviaError</a></p>
+            
+
+            
+            <div class="method-source-code" id="get_payment_access_token-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/clients/bv_payment.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_payment_access_token</span>(<span class="ruby-identifier">oauth_verifier</span>, <span class="ruby-identifier">request_token</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">request_secret</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_attribute</span>(<span class="ruby-identifier">oauth_verifier</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'oauth_verifier' &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART2</span>)
+  
+  <span class="ruby-comment"># If no tokens provided, last ones are used</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">request_token</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">request_token</span> = <span class="ruby-ivar">@payment_request_pair</span>.<span class="ruby-identifier">token</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">request_secret</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">request_secret</span> = <span class="ruby-ivar">@payment_request_pair</span>.<span class="ruby-identifier">secret</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># Calls BVOauthClient get_access_token method</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">access_token</span> = <span class="ruby-identifier">get_access_token</span>(<span class="ruby-identifier">oauth_verifier</span>, <span class="ruby-identifier">request_token</span>, <span class="ruby-identifier">request_secret</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ConnectionError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">error_p</span>
+    <span class="ruby-identifier">e</span>= <span class="ruby-constant">BVResponse</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">code</span> = <span class="ruby-identifier">error_p</span>.<span class="ruby-identifier">code</span>
+    <span class="ruby-identifier">error_parsed</span> = <span class="ruby-ivar">@Ie</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">error_p</span>.<span class="ruby-identifier">additional_data</span>[<span class="ruby-value">:body</span>]
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> = <span class="ruby-identifier">parse_error</span>(<span class="ruby-identifier">error_parsed</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BlueviaError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_payment_access_token-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_payment_access_token-method -->
+
+      
+        <div id="get_payment_request_token-method" class="method-detail ">
+          <a name="method-i-get_payment_request_token"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_payment_request_token</span><span
+              class="method-args">(amount, currency, name, service_id, callback = "oob")</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Gets a RequestToken for a Payment operation</p>
+
+<p>required params :</p>
+<dl class="rdoc-list"><dt><b>amount</b></dt>
+<dd>
+<p>Cost of the digital good being sold, expressed in the minimum fractional
+monetary unit of the currency reflected in the next parameter (to avoid
+decimal digits).</p>
+</dd><dt><b>currency</b></dt>
+<dd>
+<p>Currency of the payment, following ISO 4217 (EUR, GBP, MXN, etc.)</p>
+</dd><dt><b>name</b></dt>
+<dd>
+<p>Name of the service for the payment</p>
+</dd><dt><b>service_id</b></dt>
+<dd>
+<p>ID of the service for the payment</p>
+</dd></dl>
+
+<p>optional params :</p>
+<dl class="rdoc-list"><dt><b>callback</b></dt>
+<dd>
+<p>Endpoint to receive verification url</p>
+</dd></dl>
+
+<p>returns an <a
+href="Schemas/RequestToken.html">Bluevia::Schemas::RequestToken</a> raise
+<a href="BlueviaError.html">BlueviaError</a></p>
+            
+
+            
+            <div class="method-source-code" id="get_payment_request_token-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/clients/bv_payment.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_payment_request_token</span>(<span class="ruby-identifier">amount</span>, <span class="ruby-identifier">currency</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">service_id</span>, <span class="ruby-identifier">callback</span> = <span class="ruby-string">&quot;oob&quot;</span>)
+  
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_attribute</span>(<span class="ruby-identifier">amount</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'amount' &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART2</span>)
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_attribute</span>(<span class="ruby-identifier">currency</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'currency' &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART2</span>)
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_attribute</span>(<span class="ruby-identifier">name</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'name' &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART2</span>)
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_attribute</span>(<span class="ruby-identifier">service_id</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'service_id' &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART2</span>)
+  <span class="ruby-identifier">plus_one</span> = <span class="ruby-identifier">amount</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_number</span>(<span class="ruby-identifier">plus_one</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'amount' &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART4</span>)
+  
+  <span class="ruby-identifier">e</span> = <span class="ruby-constant">BVResponse</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">code</span> = <span class="ruby-constant">COD_1</span>
+  
+  <span class="ruby-comment"># Includes extra oauth headers needed only for payment</span>
+  <span class="ruby-identifier">params</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>      
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:xoauth_apiName</span>] = <span class="ruby-ivar">@b_pay_path</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">callback</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">callback</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">callback</span> = <span class="ruby-string">&quot;oob&quot;</span>
+  <span class="ruby-keyword">end</span>
+ 
+  <span class="ruby-keyword">if</span>  <span class="ruby-identifier">callback</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">String</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">callback</span>.<span class="ruby-identifier">to_i</span><span class="ruby-operator">==</span><span class="ruby-value">0</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">callback</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>].<span class="ruby-identifier">eql?</span>(<span class="ruby-string">&quot;http&quot;</span>) <span class="ruby-keyword">or</span> <span class="ruby-identifier">callback</span>.<span class="ruby-identifier">eql?</span>(<span class="ruby-string">&quot;oob&quot;</span>)
+      <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;Wrong callback parameter&quot;</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">BlueviaError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>)
+    <span class="ruby-keyword">else</span> 
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:oauth_callback</span>] = <span class="ruby-identifier">callback</span>
+    <span class="ruby-keyword">end</span>
+    
+  <span class="ruby-keyword">else</span> 
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;Callback parameter must be a String&quot;</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BlueviaError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>)
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">uri</span>=<span class="ruby-ivar">@auth_uri</span>
+  
+  <span class="ruby-comment"># Prepare parameters to be included in oauth signature</span>
+  <span class="ruby-comment"># This information is somehow reflected on access tokens returned for </span>
+  <span class="ruby-comment"># payment transaction (they must be equal to the ones provided y payment method</span>
+  <span class="ruby-identifier">body</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">body</span>[<span class="ruby-string">&quot;serviceInfo.name&quot;</span>] = <span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">body</span>[<span class="ruby-string">&quot;serviceInfo.serviceID&quot;</span>] = <span class="ruby-identifier">service_id</span>
+  <span class="ruby-identifier">body</span>[<span class="ruby-string">&quot;paymentInfo.amount&quot;</span>] = <span class="ruby-identifier">amount</span>
+  <span class="ruby-identifier">body</span>[<span class="ruby-string">&quot;paymentInfo.currency&quot;</span>] = <span class="ruby-identifier">currency</span>
+  
+  <span class="ruby-keyword">begin</span>
+    
+    <span class="ruby-comment"># Calls connector oauth methods</span>
+    <span class="ruby-ivar">@payment_request_pair</span> = <span class="ruby-ivar">@Ic</span>.<span class="ruby-identifier">get_request_token</span>(<span class="ruby-identifier">params</span>, <span class="ruby-identifier">body</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">RequestToken</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@payment_request_pair</span>, <span class="ruby-node">&quot;#{@auth_uri}?oauth_token=#{@payment_request_pair.token}&quot;</span>)
+  
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ConnectionError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">error_p</span>
+    <span class="ruby-identifier">e</span>= <span class="ruby-constant">BVResponse</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">code</span> = <span class="ruby-identifier">error_p</span>.<span class="ruby-identifier">code</span>
+    <span class="ruby-identifier">error_parsed</span> = <span class="ruby-ivar">@Ie</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">error_p</span>.<span class="ruby-identifier">additional_data</span>[<span class="ruby-value">:body</span>]
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> = <span class="ruby-identifier">parse_error</span>(<span class="ruby-identifier">error_parsed</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BlueviaError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>)
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_payment_request_token-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_payment_request_token-method -->
+
+      
+        <div id="get_payment_status-method" class="method-detail ">
+          <a name="method-i-get_payment_status"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_payment_status</span><span
+              class="method-args">( transaction_id )</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>This operation allows to get the status of the current transaction.
+required params :</p>
+<dl class="rdoc-list"><dt><b>transaction_id</b></dt>
+<dd>
+<p>Transaction identifier returned inside PaymentStatus object ex:
+transaction_id = payment_response.transaction_id</p>
+</dd></dl>
+
+<p>returns an PaymentStatus object with information about the transaction
+raise <a href="BlueviaError.html">BlueviaError</a></p>
+            
+
+            
+            <div class="method-source-code" id="get_payment_status-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/clients/bv_payment.rb, line 307</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_payment_status</span>( <span class="ruby-identifier">transaction_id</span> ) 
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_attribute</span>(<span class="ruby-identifier">transaction_id</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'transaction_id' &quot;</span>)
+  
+  <span class="ruby-identifier">method</span> = <span class="ruby-string">'GET_PAYMENT_STATUS'</span>
+  <span class="ruby-identifier">header_method</span> = <span class="ruby-string">'getPaymentStatus'</span>
+  <span class="ruby-identifier">params</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">params</span> = {<span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">method</span>, <span class="ruby-value">:params</span> =<span class="ruby-operator">&gt;</span>{<span class="ruby-value">:getPaymentStatusParams</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:transactionId</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">transaction_id</span>}}}
+
+  <span class="ruby-identifier">response</span>= <span class="ruby-identifier">base_create</span>(<span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span> <span class="ruby-identifier">header_method</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">params</span>, <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">filter_response</span>(<span class="ruby-identifier">header_method</span>, <span class="ruby-identifier">response</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_payment_status-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_payment_status-method -->
+
+      
+        <div id="payment-method" class="method-detail ">
+          <a name="method-i-payment"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">payment</span><span
+              class="method-args">(amount, currency, endpoint = nil, correlator = nil )</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Orders an economic charge on the user’s operator account.</p>
+
+<p>required params :</p>
+<dl class="rdoc-list"><dt><b>amount</b></dt>
+<dd>
+<p>Cost of the digital good being sold, expressed in the minimum fractional
+monetary unit of the currency reflected in the next parameter (to avoid
+decimal digits).</p>
+</dd><dt><b>currency</b></dt>
+<dd>
+<p>Currency of the payment, following ISO 4217 (EUR, GBP, MXN, etc.)</p>
+</dd></dl>
+
+<p>optional params :</p>
+<dl class="rdoc-list"><dt><b>endpoint</b></dt>
+<dd>
+<p>Endpoint to receive notifications of payment status</p>
+</dd><dt><b>correlator</b></dt>
+<dd>
+<p>Correlator to receive notifications of payment status</p>
+</dd></dl>
+
+<p>returns an PaymentResult object with information about the transaction
+raise <a href="BlueviaError.html">BlueviaError</a></p>
+            
+
+            
+            <div class="method-source-code" id="payment-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/clients/bv_payment.rb, line 232</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">payment</span>(<span class="ruby-identifier">amount</span>, <span class="ruby-identifier">currency</span>, <span class="ruby-identifier">endpoint</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">correlator</span> = <span class="ruby-keyword">nil</span> )     
+  
+  <span class="ruby-comment"># Verifies mandatory parameters</span>
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_attribute</span>(<span class="ruby-identifier">amount</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'amount' &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART2</span>)
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_attribute</span>(<span class="ruby-identifier">currency</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'currency' &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART2</span>)
+  <span class="ruby-identifier">plus_one</span> = <span class="ruby-identifier">amount</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_number</span>(<span class="ruby-identifier">plus_one</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'amount' &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART4</span>)
+  
+  <span class="ruby-comment"># Prepare payment parameters</span>
+  <span class="ruby-identifier">params</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">payment_params</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> 
+  <span class="ruby-identifier">payment_info</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">recreq_info</span>= <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> 
+
+  <span class="ruby-identifier">payment_info</span>[<span class="ruby-value">:amount</span>] = <span class="ruby-identifier">amount</span>
+  <span class="ruby-identifier">payment_info</span>[<span class="ruby-value">:currency</span>] = <span class="ruby-identifier">currency</span>
+  <span class="ruby-identifier">payment_params</span>[<span class="ruby-value">:paymentInfo</span>] = <span class="ruby-identifier">payment_info</span>
+
+  <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">endpoint</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">correlator</span>.<span class="ruby-identifier">nil?</span>)
+   <span class="ruby-identifier">recreq_info</span>[<span class="ruby-value">:endpoint</span>] = <span class="ruby-identifier">endpoint</span>
+   <span class="ruby-identifier">recreq_info</span>[<span class="ruby-value">:correlator</span>] = <span class="ruby-identifier">correlator</span>
+   <span class="ruby-identifier">payment_params</span>[<span class="ruby-value">:receiptRequest</span>] = <span class="ruby-identifier">recreq_info</span>
+    
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">endpoint</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">correlator</span>.<span class="ruby-identifier">nil?</span>) <span class="ruby-keyword">or</span> (<span class="ruby-identifier">endpoint</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">correlator</span>.<span class="ruby-identifier">nil?</span>)
+     <span class="ruby-identifier">e</span> = <span class="ruby-constant">BVResponse</span>.<span class="ruby-identifier">new</span>
+     <span class="ruby-identifier">e</span>.<span class="ruby-identifier">code</span> = <span class="ruby-constant">COD_1</span>
+     <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;Both, endpoint and correlator are not mandatory parameters, but if necessary, they must be provided together.&quot;</span>
+  
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-comment"># Sets and Gets timestamp value of connector</span>
+  <span class="ruby-comment"># It will be included both in payment params of the request and </span>
+  <span class="ruby-comment"># in the oauth special header but with different formats </span>
+  <span class="ruby-identifier">timestamp</span> = <span class="ruby-ivar">@Ic</span>.<span class="ruby-identifier">get_timestamp_payment</span>
+  <span class="ruby-ivar">@Ic</span>.<span class="ruby-identifier">set_timestamp</span>
+  
+  <span class="ruby-identifier">payment_params</span>[<span class="ruby-value">:timestamp</span>] = <span class="ruby-identifier">timestamp</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">iso8601</span>
+  
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:method</span>] = <span class="ruby-constant">BP_PAY</span>.<span class="ruby-identifier">upcase</span> 
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:params</span>] = {<span class="ruby-value">:paymentParams</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">payment_params</span>}
+
+  <span class="ruby-identifier">response</span> = <span class="ruby-identifier">base_create</span>(<span class="ruby-string">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">BP_PAY</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">params</span>, <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">filter_response</span>(<span class="ruby-constant">BP_PAY</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-identifier">response</span>)
+  
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- payment-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- payment-method -->
+
+      
+        <div id="set_token-method" class="method-detail ">
+          <a name="method-i-set_token"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">set_token</span><span
+              class="method-args">(token)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Set connector session tokens</p>
+            
+
+            
+            <div class="method-source-code" id="set_token-source">
+<pre>
+<span class="ruby-comment"># File lib/bluevia/clients/bv_payment.rb, line 203</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_token</span>(<span class="ruby-identifier">token</span>)
+  <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_attribute</span>(<span class="ruby-identifier">token</span>, <span class="ruby-constant">ERR_PART1</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; 'token' &quot;</span><span class="ruby-operator">+</span> <span class="ruby-constant">ERR_PART2</span>)
+  <span class="ruby-identifier">e</span> = <span class="ruby-constant">BVResponse</span>.<span class="ruby-identifier">new</span>
+      
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-ivar">@Ic</span>.<span class="ruby-identifier">set_token</span>(<span class="ruby-identifier">token</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">code</span> = <span class="ruby-constant">COD_12</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> = <span class="ruby-constant">ERR_PART3</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;set payment tokens.&quot;</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BlueviaError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>)
+  <span class="ruby-keyword">end</span>
+  
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- set_token-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- set_token-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+
